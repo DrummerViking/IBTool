@@ -2,12 +2,15 @@
     <#
     .SYNOPSIS
     Connect to Online Services.
-    
+
     .DESCRIPTION
     Connect to MicrosoftTeams, MS Online and AzureAD Online Services.
-    
+
     .PARAMETER Credential
     Credential to use for the connection.
+
+    .PARAMETER SCC
+    Use this switch parameter to connect to Security and Compliance remote powershell.
 
     .PARAMETER MicrosoftTeams
     Use this switch parameter to connect to MS Teams module.
@@ -40,6 +43,9 @@
     param(
         [PSCredential]
         $Credential = (Get-Credential -Message "Please specify O365 Global Admin Credentials"),
+
+        [Switch]
+        $SCC,
 
         [Switch]
         $MicrosoftTeams,
@@ -135,9 +141,12 @@
     if($MicrosoftTeams){
         Invoke-PSFProtectedCommand -Action "Connecting to MicrosoftTeams" -Target "MicrosoftTeams" -ScriptBlock {
             Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Connecting to MicrosoftTeams"
+            if ( !(Get-Module MicrosoftTeams -ListAvailable) -and !(Get-Module MicrosoftTeams) ) {
+                Install-Module MicrosoftTeams -Force -ErrorAction Stop
+            }
             try {
                 #Connect to Microsoft Teams
-                $null = -MicrosoftTeams -Credential $Credential -ErrorAction Stop
+                $null = Connect-MicrosoftTeams -Credential $Credential -ErrorAction Stop
 
                 #Connection to Skype for Business Online and import into Ps session
                 $session = New-CsOnlineSession -Credential $Credential -ErrorAction Stop
@@ -157,9 +166,24 @@
                     return $_
                 }
             }
-            # As a temporary workaround, we are reimporting the Exchange On-premises PS Session
-            $OnpremSession = Get-PSSession | Where-Object { $_.ComputerName -eq "ex2016.contoso.com"}
-            Import-PSSession $OnpremSession -AllowClobber -WarningAction SilentlyContinue
+        } -EnableException $true -PSCmdlet $PSCmdlet
+    }
+
+    if($SCC){
+        Invoke-PSFProtectedCommand -Action "Connecting to Security and Compliance" -Target "SCC" -ScriptBlock {
+            Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Connecting to Security and Compliance"
+            try {
+                Connect-IPPSSession -Credential $Credential -ErrorAction Stop
+            }
+            catch {
+                if ( ($_.Exception.InnerException.InnerException.InnerException.InnerException.ErrorCode | ConvertFrom-Json).error -eq 'interaction_required' ) {
+                    Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your are account seems to be requiring MFA to connect to Security and Compliance. Requesting to authenticate"
+                    Connect-IPPSSession -UserPrincipalName $Credential.Username.toString() -ErrorAction Stop
+                }
+                else {
+                    return $_
+                }
+            }
         } -EnableException $true -PSCmdlet $PSCmdlet
     }
 }

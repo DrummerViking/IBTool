@@ -26,5 +26,12 @@
     )
 
     # Connecting to online modules
-    Connect-OnlineServices -Credential $Credential -MicrosofTeams
+    Connect-OnlineServices -Credential $Credential -SCC
+
+    #region Import the Assemblies
+    Add-Type -AssemblyName System.Windows.Forms
+    Add-Type -AssemblyName System.Drawing
+    Add-Type -AssemblyName Microsoft.VisualBasic
+    [System.Windows.Forms.Application]::EnableVisualStyles()
+    #endregion
 }
