@@ -9,24 +9,25 @@
 	GUID = '02adbc63-ac2f-46e0-bbc4-32a47b561894'
 	
 	# Author of this module
-	Author = 'agallego'
+	Author = 'Agustin Gallegos'
 	
 	# Company or vendor of this module
-	CompanyName = 'MyCompany'
+	CompanyName = 'Microsoft'
 	
 	# Copyright statement for this module
-	Copyright = 'Copyright (c) 2020 agallego'
+	Copyright = 'Copyright (c) 2020 Agustin Gallegos'
 	
 	# Description of the functionality provided by this module
 	Description = 'This tool is intended to easily help on managing Information Barriers in Microsoft Teams'
 	
 	# Minimum version of the Windows PowerShell engine required by this module
-	PowerShellVersion = '5.0'
+	PowerShellVersion = '5.1'
 	
 	# Modules that must be imported into the global environment prior to importing
 	# this module
 	RequiredModules = @(
 		@{ ModuleName='PSFramework'; ModuleVersion='1.4.150' }
+		@{ ModuleName='MicrosoftTeams'; ModuleVersion='1.1.6'}
 	)
 	
 	# Assemblies that must be loaded prior to importing this module
@@ -39,7 +40,7 @@
 	# FormatsToProcess = @('xml\IBTool.Format.ps1xml')
 	
 	# Functions to export from this module
-	FunctionsToExport = ''
+	FunctionsToExport = 'Start-IbTool'
 	
 	# Cmdlets to export from this module
 	CmdletsToExport = ''
@@ -66,10 +67,10 @@
 			# Tags = @()
 			
 			# A URL to the license for this module.
-			# LicenseUri = ''
+			LicenseUri = 'https://github.com/agallego-css/IBTool/blob/main/LICENSE'
 			
 			# A URL to the main website for this project.
-			# ProjectUri = ''
+			ProjectUri = 'https://github.com/agallego-css/IBTool'
 			
 			# A URL to an icon representing this module.
 			# IconUri = ''

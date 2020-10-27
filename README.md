@@ -1,31 +1,32 @@
-﻿# Description
+﻿# IB Tool
 
-Insert a useful description for the IBTool project here.
+## About
+This tool is intended to easily help on managing Information Barriers in Microsoft Teams.  
 
-Remember, it's the first thing a visitor will see.
+## Pre-requisites
 
-# Project Setup Instructions
-## Working with the layout
+ > This Module requires Powershell 5.1 and above.  
+ > This Module will install MicrosoftTeams module.  
 
-- Don't touch the psm1 file
-- Place functions you export in `functions/` (can have subfolders)
-- Place private/internal functions invisible to the user in `internal/functions` (can have subfolders)
-- Don't add code directly to the `postimport.ps1` or `preimport.ps1`.
-  Those files are designed to import other files only.
-- When adding files & folders, make sure they are covered by either `postimport.ps1` or `preimport.ps1`.
-  This adds them to both the import and the build sequence.
+ ## Installation
 
-## Setting up CI/CD
+ Opening a Windows Powershell with "Run as Administrator" you can just run:
+``` powershell
+Install-Module IBTool -Force
+```
+Once the module is installed, you can run:
+``` powershell
+Start-IBTool
+```
 
-> To create a PR validation pipeline, set up tasks like this:
+If you want to check for module updates you can run:
+``` powershell
+Find-Module IBTool
+```
+If there is any newer version than the one you already have, you can run:
+``` powershell
+Update-Module IBTool -Force
+```
 
-- Install Prerequisites (PowerShell Task; VSTS-Prerequisites.ps1)
-- Validate (PowerShell Task; VSTS-Validate.ps1)
-- Publish Test Results (Publish Test Results; NUnit format; Run no matter what)
-
-> To create a build/publish pipeline, set up tasks like this:
-
-- Install Prerequisites (PowerShell Task; VSTS-Prerequisites.ps1)
-- Validate (PowerShell Task; VSTS-Validate.ps1)
-- Build (PowerShell Task; VSTS-Build.ps1)
-- Publish Test Results (Publish Test Results; NUnit format; Run no matter what)
+## Version History  
+[Change Log](/IBTool/changelog.md)
