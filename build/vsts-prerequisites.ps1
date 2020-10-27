@@ -3,7 +3,7 @@
     $Repository = 'PSGallery'
 )
 
-$modules = @("Pester", "PSFramework", "PSModuleDevelopment", "PSScriptAnalyzer")
+$modules = @("Pester", "PSFramework", "PSModuleDevelopment", "PSScriptAnalyzer", "MicrosoftTeams")
 
 # Automatically add missing dependencies
 $data = Import-PowerShellDataFile -Path "$PSScriptRoot\..\IBTool\IBTool.psd1"
