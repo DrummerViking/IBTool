@@ -1,0 +1,11 @@
+﻿TOPIC
+	about_IBTool
+	
+SHORT DESCRIPTION
+	Explains how to use the IBTool powershell module
+	
+LONG DESCRIPTION
+	<Insert Content here>
+
+KEYWORDS
+	IBTool
