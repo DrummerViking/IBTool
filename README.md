@@ -2,11 +2,12 @@
 
 ## About
 This tool is intended to easily help on managing Information Barriers in Microsoft Teams.  
+*(10/27/2020 : Tool is still under construction)*
 
 ## Pre-requisites
 
  > This Module requires Powershell 5.1 and above.  
- > This Module will install MicrosoftTeams module.  
+ > This Module will install the ExchangeOnline Management module (in order to have an SCC connection session).  
 
  ## Installation
 
