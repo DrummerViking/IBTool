@@ -9,14 +9,20 @@
     .PARAMETER Credential
     Credential to use for the connection.
 
+    .PARAMETER Confirm
+    If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+
+    .PARAMETER WhatIf
+    If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
+
     .EXAMPLE
     PS C:\> Start-IBTool
     This command will launch the 'Information Barriers' GUI tool.
     #>
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess = $True, ConfirmImpact = 'Low')]
     param (
         [PSCredential]
-        $Credential = (Get-Credential -Message "Please specify O365 Global Admin Credentials")    
+        $Credential = (Get-Credential -Message "Please specify O365 Global Admin Credentials")
     )
 
     # Connecting to online modules
