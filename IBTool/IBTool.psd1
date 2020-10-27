@@ -27,7 +27,7 @@
 	# this module
 	RequiredModules = @(
 		@{ ModuleName='PSFramework'; ModuleVersion='1.4.150' }
-		@{ ModuleName='MicrosoftTeams'; ModuleVersion='1.1.6'}
+		@{ ModuleName='ExchangeOnlineManagement'; ModuleVersion='2.0.3'}
 	)
 	
 	# Assemblies that must be loaded prior to importing this module
