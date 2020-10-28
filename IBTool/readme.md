@@ -1,17 +1,33 @@
-﻿# PSFModule guidance
+﻿# IB Tool
 
-This is a finished module layout optimized for implementing the PSFramework.
+## About
+This tool is intended to easily help on managing Information Barriers in Microsoft Teams.  
+**(10/27/2020 : Tool is still under construction)**
 
-If you don't care to deal with the details, this is what you need to do to get started seeing results:
+## Pre-requisites
 
- - Add the functions you want to publish to `/functions/`
- - Update the `FunctionsToExport` node in the module manifest (IBTool.psd1). All functions you want to publish should be in a list.
- - Add internal helper functions the user should not see to `/internal/functions/`
- 
- ## Path Warning
- 
- > If you want your module to be compatible with Linux and MacOS, keep in mind that those OS are case sensitive for paths and files.
- 
- `Import-ModuleFile` is preconfigured to resolve the path of the files specified, so it will reliably convert weird path notations the system can't handle.
- Content imported through that command thus need not mind the path separator.
- If you want to make sure your code too will survive OS-specific path notations, get used to using `Resolve-path` or the more powerful `Resolve-PSFPath`.
+ > This Module requires Powershell 5.1 and above.  
+ > This Module will install the ExchangeOnline Management module (in order to have an SCC connection session).  
+
+ ## Installation
+
+ Opening a Windows Powershell with "Run as Administrator" you can just run:
+``` powershell
+Install-Module IBTool -Force
+```
+Once the module is installed, you can run:
+``` powershell
+Start-IBTool
+```
+
+If you want to check for module updates you can run:
+``` powershell
+Find-Module IBTool
+```
+If there is any newer version than the one you already have, you can run:
+``` powershell
+Update-Module IBTool -Force
+```
+
+## Version History  
+[Change Log](/changelog.md)

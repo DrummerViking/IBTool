@@ -9,6 +9,9 @@
     .PARAMETER Credential
     Credential to use for the connection.
 
+    .PARAMETER EXO
+    Use this switch parameter to connect to Exchange Online remote powershell.
+
     .PARAMETER SCC
     Use this switch parameter to connect to Security and Compliance remote powershell.
 
@@ -43,6 +46,9 @@
     param(
         [PSCredential]
         $Credential = (Get-Credential -Message "Please specify O365 Global Admin Credentials"),
+
+        [Switch]
+        $EXO,
 
         [Switch]
         $SCC,
@@ -169,16 +175,34 @@
         } -EnableException $true -PSCmdlet $PSCmdlet
     }
 
+    if($EXO){
+        Invoke-PSFProtectedCommand -Action "Connecting to Exchange Online" -Target "EXO" -ScriptBlock {
+            Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Connecting to Exchange Online"
+            try {
+                Connect-ExchangeOnline -Credential $Credential -ErrorAction Stop
+            }
+            catch {
+                if ( ($_.Exception.InnerException.InnerException.InnerException.InnerException.ErrorCode | ConvertFrom-Json).error -eq 'interaction_required' ) {
+                    Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your are account seems to be requiring MFA to connect to Exchange Online. Requesting to authenticate"
+                    Connect-ExchangeOnline -UserPrincipalName $Credential.Username.toString() -ErrorAction Stop
+                }
+                else {
+                    return $_
+                }
+            }
+        } -EnableException $true -PSCmdlet $PSCmdlet
+    }
+
     if($SCC){
         Invoke-PSFProtectedCommand -Action "Connecting to Security and Compliance" -Target "SCC" -ScriptBlock {
             Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Connecting to Security and Compliance"
             try {
-                Connect-IPPSSession -Credential $Credential -ErrorAction Stop
+                Connect-IPPSSession -Credential $Credential -Prefix SCC -ErrorAction Stop
             }
             catch {
                 if ( ($_.Exception.InnerException.InnerException.InnerException.InnerException.ErrorCode | ConvertFrom-Json).error -eq 'interaction_required' ) {
                     Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your are account seems to be requiring MFA to connect to Security and Compliance. Requesting to authenticate"
-                    Connect-IPPSSession -UserPrincipalName $Credential.Username.toString() -ErrorAction Stop
+                    Connect-IPPSSession -UserPrincipalName $Credential.Username.toString() -Prefix SCC -ErrorAction Stop
                 }
                 else {
                     return $_
