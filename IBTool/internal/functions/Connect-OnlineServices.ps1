@@ -4,7 +4,7 @@
     Connect to Online Services.
 
     .DESCRIPTION
-    Connect to MicrosoftTeams, MS Online and AzureAD Online Services.
+    Use this function to connect to EXO, SCC, MicrosoftTeams, MS Online and AzureAD Online Services.
 
     .PARAMETER Credential
     Credential to use for the connection.
@@ -37,8 +37,8 @@
     If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
    
     .EXAMPLE
-    PS C:\> Connect-OnlineServices
-    Connect to Exchange and Azure Online Services.
+    PS C:\> Connect-OnlineServices -Credential $UserCredential -EXO -AzureAD
+    Connects to Exchange and AzureAD Online Services with the passed User Credentials variable.
     
     #>
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
@@ -179,7 +179,10 @@
         Invoke-PSFProtectedCommand -Action "Connecting to Exchange Online" -Target "EXO" -ScriptBlock {
             Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Connecting to Exchange Online"
             try {
-                Connect-ExchangeOnline -Credential $Credential -ErrorAction Stop
+                # Getting current PS Sessions
+                $Sessions = Get-PSSession
+                if ($Sessions.ComputerName -eq "outlook.office365.com") { return }
+                else { Connect-ExchangeOnline -Credential $Credential -ErrorAction Stop }
             }
             catch {
                 if ( ($_.Exception.InnerException.InnerException.InnerException.InnerException.ErrorCode | ConvertFrom-Json).error -eq 'interaction_required' ) {

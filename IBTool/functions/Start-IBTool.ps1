@@ -25,7 +25,7 @@
         $Credential = (Get-Credential -Message "Please specify O365 Global Admin Credentials")
     )
 
-    # Connecting to online modules
+    # Check connection status, and connect if needed
     Connect-OnlineServices -Credential $Credential -EXO -SCC
 
     function GenerateForm {
