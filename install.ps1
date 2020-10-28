@@ -27,7 +27,7 @@
 [CmdletBinding()]
 Param (
 	[string]
-	$Branch = "master",
+	$Branch = "main",
 	
 	[switch]
 	$UserMode,
@@ -45,7 +45,7 @@ Param (
 $ModuleName = "IBTool"
 
 # Base path to the github repository
-$BaseUrl = "https://github.com/<InsertUsernameHere>/IBTool"
+$BaseUrl = "https://github.com/agallego-css/IBTool"
 
 # If the module is in a subfolder of the cloned repository, specify relative path here. Empty string to skip.
 $SubFolder = "IBTool"
