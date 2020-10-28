@@ -10,6 +10,7 @@
     PS C:\> Get-IBPolicies
     This funciton gets the current Information Barriers Policies in the tenant.
     #>
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
     [CmdletBinding()]
     Param(
         # Parameters
@@ -21,5 +22,5 @@
     $dataGrid.datasource = $array
     $dataGrid.AutoResizeColumns()
     $MainForm.refresh()
-    $statusBar.Text = "Ready. IB Policies found: $($array.count)"      
+    $statusBar.Text = "Ready. IB Policies found: $($array.count)"
 }

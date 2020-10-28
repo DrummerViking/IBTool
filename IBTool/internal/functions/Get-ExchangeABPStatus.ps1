@@ -8,6 +8,7 @@
     
     .EXAMPLE
     PS C:\> Get-ExchangeABPStatus
+    Function to verify if Exchange AddressBook Policies are in place.
     #>
     [CmdletBinding()]
     Param(

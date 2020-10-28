@@ -10,6 +10,7 @@
     PS C:\> Get-OrgSegments
     This funciton gets the current Organization Segments in the tenant.
     #>
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
     [CmdletBinding()]
     Param(
         # Parameters
@@ -21,5 +22,5 @@
     $dataGrid.datasource = $array
     $dataGrid.AutoResizeColumns()
     $MainForm.refresh()
-    $statusBar.Text = "Ready. Segments found: $($array.count)"      
+    $statusBar.Text = "Ready. Segments found: $($array.count)"
 }
