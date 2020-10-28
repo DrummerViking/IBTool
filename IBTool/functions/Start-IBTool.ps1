@@ -33,7 +33,7 @@
     if ( $Sessions.ComputerName -notcontains "outlook.office365.com" ) { $ServicesToConnect.add("EXO") }
 
     # Check if SCC connection
-    if ( -not ($Sessions.ComputerName -match "ps.compliance.protection.outlook.com") ) { $ServicesToConnect.add("SCC") }    
+    if ( -not ($Sessions.ComputerName -match "ps.compliance.protection.outlook.com") ) { $ServicesToConnect.add("SCC") }
 
     # Check if AzureAD connection
     try{
