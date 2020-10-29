@@ -1,9 +1,10 @@
 ﻿# Changelog  
 
-## 1.0.17 (2020-10-29)  
+## 1.0.18 (2020-10-29)  
 - Fixed: Updated Connect-OnlineServices function to invert the order of services to connect, to prevent cmdlet overlapping.  
 - New: Added function to check (and add if missing) an existing AzureAD Service Principal for "information Barrier Processor" Enterprise App.  
 - New: Added function to get Organization Segment members.  
+- New: Minor cosmetic change adding horizontal lines.  
 
 ## 1.0.13 (2020-10-28)  
  - New: Added 5 functions  
