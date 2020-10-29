@@ -21,8 +21,7 @@
     #>
     [CmdletBinding(SupportsShouldProcess = $True, ConfirmImpact = 'Low')]
     param (
-        [PSCredential]
-        $Credential = (Get-Credential -Message "Please specify O365 Global Admin Credentials")
+        # Parameters
     )
 
     # Check current connection status, and connect if needed
@@ -45,8 +44,13 @@
         $labelAuditLogStatusValue = New-Object System.Windows.Forms.Label
         $labelABPStatus = New-Object System.Windows.Forms.Label
         $labelABPStatusValue = New-Object System.Windows.Forms.Label
+        $labelIBServicePrincipal = New-Object System.Windows.Forms.Label
+        $labelIBServicePrincipalValue = New-Object System.Windows.Forms.Label
         $buttonGetSegments = New-Object System.Windows.Forms.Button
         $buttonGetIBPolicies = New-Object System.Windows.Forms.Button
+        $buttonGetIBPoliciesAppStatus = New-Object System.Windows.Forms.Button
+        $textBoxOrgSegment = New-Object System.Windows.Forms.TextBox
+        $buttonGetSegmentMembers = New-Object System.Windows.Forms.Button
         $textBoxUser1 = New-Object System.Windows.Forms.TextBox
         $labelCompareWith = New-Object System.Windows.Forms.Label
         $textBoxUser2 = New-Object System.Windows.Forms.TextBox
@@ -111,11 +115,27 @@
         Get-ExchangeABPStatus
         $MainForm.Controls.Add($labelABPStatusValue)
         #
+        # Label Information Barrier Service Principal
+        #
+        $labelIBServicePrincipal.Location = New-Object System.Drawing.Point(10,60)
+        $labelIBServicePrincipal.Size = New-Object System.Drawing.Size(220,20)
+        $labelIBServicePrincipal.Name = "labelIBServicePrincipal"
+        $labelIBServicePrincipal.Text = "Information Barrier Service Principal found:"
+        $MainForm.Controls.Add($labelIBServicePrincipal)
+        #
+        # Label Information Barrier Service Principal Status
+        #
+        $labelIBServicePrincipalValue.Location = New-Object System.Drawing.Point(230,60)
+        $labelIBServicePrincipalValue.Size = New-Object System.Drawing.Size(35,20)
+        $labelIBServicePrincipalValue.Name = "labelIBServicePrincipalStatus"
+        Get-IBServicePrincipal
+        $MainForm.Controls.Add($labelIBServicePrincipalValue)
+        #
         # Button Get Organization Segments
         #
         $buttonGetSegments.DataBindings.DefaultDataSourceUpdateMode = 0
         $buttonGetSegments.ForeColor = [System.Drawing.Color]::FromArgb(255,0,0,0)
-        $buttonGetSegments.Location = New-Object System.Drawing.Point(10,60)
+        $buttonGetSegments.Location = New-Object System.Drawing.Point(10,100)
         $buttonGetSegments.Size = New-Object System.Drawing.Size(200,25)
         $buttonGetSegments.TabIndex = 17
         $buttonGetSegments.Name = "GetSegments"
@@ -128,7 +148,7 @@
         #
         $buttonGetIBPolicies.DataBindings.DefaultDataSourceUpdateMode = 0
         $buttonGetIBPolicies.ForeColor = [System.Drawing.Color]::FromArgb(255,0,0,0)
-        $buttonGetIBPolicies.Location = New-Object System.Drawing.Point(220,60)
+        $buttonGetIBPolicies.Location = New-Object System.Drawing.Point(220,100)
         $buttonGetIBPolicies.Size = New-Object System.Drawing.Size(250,25)
         $buttonGetIBPolicies.TabIndex = 17
         $buttonGetIBPolicies.Name = "GetIBPolicies"
@@ -137,9 +157,43 @@
         $buttonGetIBPolicies.add_Click({Get-IBPolicies})
         $MainForm.Controls.Add($buttonGetIBPolicies)
         #
+        # Button Get Information Barriers Policies Application Status
+        #
+        $buttonGetIBPoliciesAppStatus.DataBindings.DefaultDataSourceUpdateMode = 0
+        $buttonGetIBPoliciesAppStatus.ForeColor = [System.Drawing.Color]::FromArgb(255,0,0,0)
+        $buttonGetIBPoliciesAppStatus.Location = New-Object System.Drawing.Point(480,100)
+        $buttonGetIBPoliciesAppStatus.Size = New-Object System.Drawing.Size(300,25)
+        $buttonGetIBPoliciesAppStatus.TabIndex = 17
+        $buttonGetIBPoliciesAppStatus.Name = "GetIBPoliciesAppStatus"
+        $buttonGetIBPoliciesAppStatus.Text = "Get IB Policies Application Status"
+        $buttonGetIBPoliciesAppStatus.UseVisualStyleBackColor = $True
+        $buttonGetIBPoliciesAppStatus.add_Click({Get-IBPoliciesAppStatus})
+        $MainForm.Controls.Add($buttonGetIBPoliciesAppStatus)
+        #
+        # Text Box Organization Segment Name
+        #
+        $textBoxOrgSegment.Location = New-Object System.Drawing.Point(10,140)
+        $textBoxOrgSegment.Size = New-Object System.Drawing.Size(200,20)
+        $textBoxOrgSegment.Name = "textBoxOrgSegment"
+        $textBoxOrgSegment.Text = "Sample Organization Segment"
+        $MainForm.Controls.Add($textBoxOrgSegment)
+        #
+        # Button Get Organization Segment Members
+        #
+        $buttonGetSegmentMembers.DataBindings.DefaultDataSourceUpdateMode = 0
+        $buttonGetSegmentMembers.ForeColor = [System.Drawing.Color]::FromArgb(255,0,0,0)
+        $buttonGetSegmentMembers.Location = New-Object System.Drawing.Point(220,140)
+        $buttonGetSegmentMembers.Size = New-Object System.Drawing.Size(250,25)
+        $buttonGetSegmentMembers.TabIndex = 17
+        $buttonGetSegmentMembers.Name = "GetSegmentMembers"
+        $buttonGetSegmentMembers.Text = "Get Segment Members"
+        $buttonGetSegmentMembers.UseVisualStyleBackColor = $True
+        $buttonGetSegmentMembers.add_Click({Get-SegmentMembers -SegmentName $textBoxOrgSegment.Text.ToString()})
+        $MainForm.Controls.Add($buttonGetSegmentMembers)
+        #
         # Text Box for user1
         #
-        $textBoxUser1.Location = New-Object System.Drawing.Point(10,100)
+        $textBoxUser1.Location = New-Object System.Drawing.Point(10,180)
         $textBoxUser1.Size = New-Object System.Drawing.Size(150,20)
         $textBoxUser1.Name = "textBoxUser1"
         $textBoxUser1.Text = "Sample User1"
@@ -147,16 +201,15 @@
         #
         # Label Compare with
         #
-        $labelCompareWith.Location = New-Object System.Drawing.Point(170,103)
+        $labelCompareWith.Location = New-Object System.Drawing.Point(170,183)
         $labelCompareWith.Size = New-Object System.Drawing.Size(80,20)
         $labelCompareWith.Name = "labelABPStatusValue"
         $labelCompareWith.Text = "compare with:"
         $MainForm.Controls.Add($labelCompareWith)
-        
         #
         # Text Box for user2
         #
-        $textBoxUser2.Location = New-Object System.Drawing.Point(250,100)
+        $textBoxUser2.Location = New-Object System.Drawing.Point(250,180)
         $textBoxUser2.Size = New-Object System.Drawing.Size(150,20)
         $textBoxUser2.Name = "textBoxUser2"
         $textBoxUser2.Text = "Sample User2"
@@ -166,13 +219,13 @@
         #
         $buttonCompareIdentities.DataBindings.DefaultDataSourceUpdateMode = 0
         $buttonCompareIdentities.ForeColor = [System.Drawing.Color]::FromArgb(255,0,0,0)
-        $buttonCompareIdentities.Location = New-Object System.Drawing.Point(410,98)
+        $buttonCompareIdentities.Location = New-Object System.Drawing.Point(410,178)
         $buttonCompareIdentities.Size = New-Object System.Drawing.Size(150,25)
         $buttonCompareIdentities.TabIndex = 17
         $buttonCompareIdentities.Name = "CompareIdentities"
         $buttonCompareIdentities.Text = "Compare Users"
         $buttonCompareIdentities.UseVisualStyleBackColor = $True
-        $buttonCompareIdentities.add_Click({Get-IBPolicies})
+        $buttonCompareIdentities.add_Click({Get-IBPoliciesRecipientStatus -User1 $textBoxUser1.Text.toString() -User2 $textBoxUser2.Text.toString()})
         $MainForm.Controls.Add($buttonCompareIdentities)
         #
         # Data Grid outputs
