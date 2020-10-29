@@ -28,14 +28,14 @@
 Param(
 	[string]
 	$Branch = "main",
-	
+
 	[switch]
 	$UserMode,
-	
+
 	[ValidateSet('AllUsers', 'CurrentUser')]
 	[string]
 	$Scope = "AllUsers",
-	
+
 	[switch]
 	$Force
 )

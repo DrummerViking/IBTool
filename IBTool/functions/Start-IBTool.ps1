@@ -26,22 +26,7 @@
     )
 
     # Check current connection status, and connect if needed
-    $Sessions = Get-PSSession
-    $ServicesToConnect = New-Object -TypeName "System.Collections.ArrayList"
-
-    # Check if EXO connection
-    if ( $Sessions.ComputerName -notcontains "outlook.office365.com" ) { $ServicesToConnect.add("EXO") }
-
-    # Check if SCC connection
-    if ( -not ($Sessions.ComputerName -match "ps.compliance.protection.outlook.com") ) { $ServicesToConnect.add("SCC") }
-
-    # Check if AzureAD connection
-    try{
-        $Null = Get-AzureADCurrentSessionInfo -ErrorAction Stop
-    }
-    catch {
-        $ServicesToConnect.add("AzureAD")
-    }
+    $ServicesToConnect = Assert-ServiceConnection
     # Connect to services if ArrayList is not empty
     if ( $ServicesToConnect.Count ) { Connect-OnlineServices -Credential $Credential -Services $ServicesToConnect }
 
