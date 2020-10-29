@@ -1,4 +1,19 @@
 ﻿function Get-SegmentMembers {
+    <#
+    .SYNOPSIS
+    This function gets the current Organization Segment members.
+    
+    .DESCRIPTION
+    This function gets the current Organization Segment members for the specified Segment.
+    
+    .PARAMETER SegmentName
+    Defines the Organization Segment name.
+    
+    .EXAMPLE
+    PS C:\> Get-SegmentMembers -SegmentName "HR Members"
+    Gets the current members for the Organization Segment named 'HR Members'.
+
+    #>
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
     [CmdletBinding()]
     param (

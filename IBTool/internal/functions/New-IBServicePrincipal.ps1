@@ -5,13 +5,19 @@
     
     .DESCRIPTION
     This funciton creates a new Information Barriers Service Principal in the tenant.
-    
+
+    .PARAMETER Confirm
+    If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+
+    .PARAMETER WhatIf
+    If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
+
     .EXAMPLE
     PS C:\> New-IBServicePrincipal
     This funciton creates a new Information Barriers Service Principal in the tenant.
 
     #>
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess = $True, ConfirmImpact = 'Low')]
     param (
         # Parameters
     )

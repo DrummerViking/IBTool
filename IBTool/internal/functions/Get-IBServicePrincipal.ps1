@@ -16,10 +16,9 @@
     )
     Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Getting Information Barriers Service Principal."
     $Sp = Get-AzureADServicePrincipal -All:$True | Where-Object appid -eq "bcf62038-e005-436d-b970-2a472f8c1982"
-    if ($null -eq $sp) { 
+    if ($null -eq $sp) {
         $labelIBServicePrincipalValue.ForeColor = "Red"
         $labelIBServicePrincipalValue.Text = "False"
-        #$NewSP = New-AzureADServicePrincipal -AppId "bcf62038-e005-436d-b970-2a472f8c1982" 
         Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Information Barriers Service Principal not found." -DefaultColor "Red"
 
         $buttonNewServicePrincipal = New-Object System.Windows.Forms.Button

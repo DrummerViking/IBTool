@@ -13,7 +13,7 @@
     #>
     [CmdletBinding()]
     param (
-        # Parameters   
+        # Parameters
     )
     Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Getting current Information Barriers Policies Application status."
     $statusBar.Text = "Running..."
