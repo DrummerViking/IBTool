@@ -141,19 +141,16 @@
             } -EnableException $true -PSCmdlet $PSCmdlet
         }
 
-        EXO {
-            Invoke-PSFProtectedCommand -Action "Connecting to Exchange Online" -Target "EXO" -ScriptBlock {
-                Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Connecting to Exchange Online"
+        SCC {
+            Invoke-PSFProtectedCommand -Action "Connecting to Security and Compliance" -Target "SCC" -ScriptBlock {
+                Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Connecting to Security and Compliance"
                 try {
-                    # Getting current PS Sessions
-                    $Sessions = Get-PSSession
-                    if ($Sessions.ComputerName -eq "outlook.office365.com") { return }
-                    else { Connect-ExchangeOnline -Credential $Credential -ErrorAction Stop }
+                    Connect-IPPSSession -Credential $Credential -ErrorAction Stop -WarningAction SilentlyContinue
                 }
                 catch {
                     if ( ($_.Exception.InnerException.InnerException.InnerException.InnerException.ErrorCode | ConvertFrom-Json).error -eq 'interaction_required' ) {
-                        Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your are account seems to be requiring MFA to connect to Exchange Online. Requesting to authenticate"
-                        Connect-ExchangeOnline -UserPrincipalName $Credential.Username.toString() -ErrorAction Stop
+                        Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your are account seems to be requiring MFA to connect to Security and Compliance. Requesting to authenticate"
+                        Connect-IPPSSession -UserPrincipalName $Credential.Username.toString() -Prefix SCC -ErrorAction Stop -WarningAction SilentlyContinue
                     }
                     else {
                         return $_
@@ -162,16 +159,19 @@
             } -EnableException $true -PSCmdlet $PSCmdlet
         }
 
-        SCC {
-            Invoke-PSFProtectedCommand -Action "Connecting to Security and Compliance" -Target "SCC" -ScriptBlock {
-                Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Connecting to Security and Compliance"
+        EXO {
+            Invoke-PSFProtectedCommand -Action "Connecting to Exchange Online" -Target "EXO" -ScriptBlock {
+                Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Connecting to Exchange Online"
                 try {
-                    Connect-IPPSSession -Credential $Credential -ErrorAction Stop
+                    # Getting current PS Sessions
+                    $Sessions = Get-PSSession
+                    if ($Sessions.ComputerName -eq "outlook.office365.com") { return }
+                    else { Connect-ExchangeOnline -Credential $Credential -ShowBanner:$False -ErrorAction Stop }
                 }
                 catch {
                     if ( ($_.Exception.InnerException.InnerException.InnerException.InnerException.ErrorCode | ConvertFrom-Json).error -eq 'interaction_required' ) {
-                        Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your are account seems to be requiring MFA to connect to Security and Compliance. Requesting to authenticate"
-                        Connect-IPPSSession -UserPrincipalName $Credential.Username.toString() -Prefix SCC -ErrorAction Stop
+                        Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your are account seems to be requiring MFA to connect to Exchange Online. Requesting to authenticate"
+                        Connect-ExchangeOnline -UserPrincipalName $Credential.Username.toString() -ShowBanner:$False -ErrorAction Stop
                     }
                     else {
                         return $_

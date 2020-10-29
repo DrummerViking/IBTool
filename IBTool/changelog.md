@@ -1,5 +1,8 @@
 ﻿# Changelog  
 
+## 1.0.14 (2020-10-29)  
+- Update: Updated Connect-OnlineServices function to invert the order of services to connect, to prevent cmdlet overlapping.  
+
 ## 1.0.13 (2020-10-28)  
  - New: Added 5 functions  
  - New: Added display information for Audit logs and Exchange ABP.  

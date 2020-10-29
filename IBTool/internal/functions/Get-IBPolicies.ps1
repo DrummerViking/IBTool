@@ -18,7 +18,7 @@
     Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Getting current Information Barriers Policies."
     $statusBar.Text = "Running..."
     $array = New-Object System.Collections.ArrayList
-    $array.AddRange( (Get-SCCInformationBarrierPolicy | Select-Object Name, State, AssignedSegment, SegmentsAllowed, SegmentsBlocked, block*) )
+    $array.AddRange( (Get-InformationBarrierPolicy | Select-Object Name, State, AssignedSegment, SegmentsAllowed, SegmentsBlocked, block*) )
     $dataGrid.datasource = $array
     $dataGrid.AutoResizeColumns()
     $MainForm.refresh()
