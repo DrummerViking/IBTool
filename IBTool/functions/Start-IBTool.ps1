@@ -46,15 +46,19 @@
         $labelABPStatusValue = New-Object System.Windows.Forms.Label
         $labelIBServicePrincipal = New-Object System.Windows.Forms.Label
         $labelIBServicePrincipalValue = New-Object System.Windows.Forms.Label
+        $HorizontalLine1 = New-Object System.Windows.Forms.Label
         $buttonGetSegments = New-Object System.Windows.Forms.Button
         $buttonGetIBPolicies = New-Object System.Windows.Forms.Button
         $buttonGetIBPoliciesAppStatus = New-Object System.Windows.Forms.Button
+        $HorizontalLine2 = New-Object System.Windows.Forms.Label
         $textBoxOrgSegment = New-Object System.Windows.Forms.TextBox
         $buttonGetSegmentMembers = New-Object System.Windows.Forms.Button
+        $HorizontalLine3 = New-Object System.Windows.Forms.Label
         $textBoxUser1 = New-Object System.Windows.Forms.TextBox
         $labelCompareWith = New-Object System.Windows.Forms.Label
         $textBoxUser2 = New-Object System.Windows.Forms.TextBox
         $buttonCompareIdentities = New-Object System.Windows.Forms.Button
+        $HorizontalLine4 = New-Object System.Windows.Forms.Label
         $dataGrid = New-Object System.Windows.Forms.DataGridView
         $InitialFormWindowState = New-Object System.Windows.Forms.FormWindowState
         #endregion Creating required Forms Objects
@@ -131,6 +135,15 @@
         Get-IBServicePrincipal
         $MainForm.Controls.Add($labelIBServicePrincipalValue)
         #
+        # Horizontal Line 1
+        #
+        $HorizontalLine1.Location = New-Object System.Drawing.Point(5,85)
+        $HorizontalLine1.Size = New-Object System.Drawing.Size(890,2)
+        $HorizontalLine1.Name = "HorizontalLine1"
+        $HorizontalLine1.Text = $null
+        $HorizontalLine1.BorderStyle = [System.Windows.Forms.BorderStyle]::Fixed3D
+        $MainForm.Controls.Add($HorizontalLine1)
+        #
         # Button Get Organization Segments
         #
         $buttonGetSegments.DataBindings.DefaultDataSourceUpdateMode = 0
@@ -170,9 +183,18 @@
         $buttonGetIBPoliciesAppStatus.add_Click({Get-IBPoliciesAppStatus})
         $MainForm.Controls.Add($buttonGetIBPoliciesAppStatus)
         #
+        # Horizontal Line 2
+        #
+        $HorizontalLine2.Location = New-Object System.Drawing.Point(5,135)
+        $HorizontalLine2.Size = New-Object System.Drawing.Size(890,2)
+        $HorizontalLine2.Name = "HorizontalLine2"
+        $HorizontalLine2.Text = $null
+        $HorizontalLine2.BorderStyle = [System.Windows.Forms.BorderStyle]::Fixed3D
+        $MainForm.Controls.Add($HorizontalLine2)
+        #
         # Text Box Organization Segment Name
         #
-        $textBoxOrgSegment.Location = New-Object System.Drawing.Point(10,140)
+        $textBoxOrgSegment.Location = New-Object System.Drawing.Point(10,150)
         $textBoxOrgSegment.Size = New-Object System.Drawing.Size(200,20)
         $textBoxOrgSegment.Name = "textBoxOrgSegment"
         $textBoxOrgSegment.Text = "Sample Organization Segment"
@@ -182,7 +204,7 @@
         #
         $buttonGetSegmentMembers.DataBindings.DefaultDataSourceUpdateMode = 0
         $buttonGetSegmentMembers.ForeColor = [System.Drawing.Color]::FromArgb(255,0,0,0)
-        $buttonGetSegmentMembers.Location = New-Object System.Drawing.Point(220,140)
+        $buttonGetSegmentMembers.Location = New-Object System.Drawing.Point(220,150)
         $buttonGetSegmentMembers.Size = New-Object System.Drawing.Size(250,25)
         $buttonGetSegmentMembers.TabIndex = 17
         $buttonGetSegmentMembers.Name = "GetSegmentMembers"
@@ -191,9 +213,18 @@
         $buttonGetSegmentMembers.add_Click({Get-SegmentMembers -SegmentName $textBoxOrgSegment.Text.ToString()})
         $MainForm.Controls.Add($buttonGetSegmentMembers)
         #
+        # Horizontal Line 3
+        #
+        $HorizontalLine3.Location = New-Object System.Drawing.Point(5,185)
+        $HorizontalLine3.Size = New-Object System.Drawing.Size(890,2)
+        $HorizontalLine3.Name = "HorizontalLine3"
+        $HorizontalLine3.Text = $null
+        $HorizontalLine3.BorderStyle = [System.Windows.Forms.BorderStyle]::Fixed3D
+        $MainForm.Controls.Add($HorizontalLine3)
+        #
         # Text Box for user1
         #
-        $textBoxUser1.Location = New-Object System.Drawing.Point(10,180)
+        $textBoxUser1.Location = New-Object System.Drawing.Point(10,200)
         $textBoxUser1.Size = New-Object System.Drawing.Size(150,20)
         $textBoxUser1.Name = "textBoxUser1"
         $textBoxUser1.Text = "Sample User1"
@@ -201,7 +232,7 @@
         #
         # Label Compare with
         #
-        $labelCompareWith.Location = New-Object System.Drawing.Point(170,183)
+        $labelCompareWith.Location = New-Object System.Drawing.Point(170,203)
         $labelCompareWith.Size = New-Object System.Drawing.Size(80,20)
         $labelCompareWith.Name = "labelABPStatusValue"
         $labelCompareWith.Text = "compare with:"
@@ -209,7 +240,7 @@
         #
         # Text Box for user2
         #
-        $textBoxUser2.Location = New-Object System.Drawing.Point(250,180)
+        $textBoxUser2.Location = New-Object System.Drawing.Point(250,200)
         $textBoxUser2.Size = New-Object System.Drawing.Size(150,20)
         $textBoxUser2.Name = "textBoxUser2"
         $textBoxUser2.Text = "Sample User2"
@@ -219,7 +250,7 @@
         #
         $buttonCompareIdentities.DataBindings.DefaultDataSourceUpdateMode = 0
         $buttonCompareIdentities.ForeColor = [System.Drawing.Color]::FromArgb(255,0,0,0)
-        $buttonCompareIdentities.Location = New-Object System.Drawing.Point(410,178)
+        $buttonCompareIdentities.Location = New-Object System.Drawing.Point(410,198)
         $buttonCompareIdentities.Size = New-Object System.Drawing.Size(150,25)
         $buttonCompareIdentities.TabIndex = 17
         $buttonCompareIdentities.Name = "CompareIdentities"
@@ -227,6 +258,15 @@
         $buttonCompareIdentities.UseVisualStyleBackColor = $True
         $buttonCompareIdentities.add_Click({Get-IBPoliciesRecipientStatus -User1 $textBoxUser1.Text.toString() -User2 $textBoxUser2.Text.toString()})
         $MainForm.Controls.Add($buttonCompareIdentities)
+        #
+        # Horizontal Line 4
+        #
+        $HorizontalLine4.Location = New-Object System.Drawing.Point(5,235)
+        $HorizontalLine4.Size = New-Object System.Drawing.Size(890,2)
+        $HorizontalLine4.Name = "HorizontalLine4"
+        $HorizontalLine4.Text = $null
+        $HorizontalLine4.BorderStyle = [System.Windows.Forms.BorderStyle]::Fixed3D
+        $MainForm.Controls.Add($HorizontalLine4)
         #
         # Data Grid outputs
         #
