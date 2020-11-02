@@ -21,7 +21,7 @@
     #>
     [CmdletBinding()]
     param (
-        $array,
+        $Array,
 
         $DataGrid,
 
@@ -29,5 +29,5 @@
     )
     $DataGrid.datasource = $array
     $DataGrid.AutoResizeColumns()
-    $Form.refresh()
+    $Form.Refresh()
 }
