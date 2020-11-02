@@ -156,7 +156,7 @@
         $buttonGetSegments.UseVisualStyleBackColor = $True
         $buttonGetSegments.add_Click({
             $Segments = Get-OrgSegments
-            if ($null = $Segments) {Write-PSFHostColor -String "segments var is empty" -DefaultColor red}
+            if ($null -eq $Segments) {Write-PSFHostColor -String "segments var is empty" -DefaultColor red}
             Add-ArrayToDataGrid -Array $Segments -DataGrid $dataGrid -Form $MainForm
         })
         $MainForm.Controls.Add($buttonGetSegments)

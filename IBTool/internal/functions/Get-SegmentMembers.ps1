@@ -15,6 +15,7 @@
 
     #>
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+    [OutputType([System.Collections.ArrayList])]
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $True, HelpMessage = "Enter Organization Segment Name.")]

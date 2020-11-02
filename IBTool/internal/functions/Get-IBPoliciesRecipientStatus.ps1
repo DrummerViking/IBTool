@@ -19,6 +19,7 @@
     This function gets the current Information Barrier Recipient status between john@contoso.com and mark@contoso.com.
     
     #>
+    [OutputType([System.Collections.ArrayList])]
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true, HelpMessage = "Defines the first user identity to compare.")]

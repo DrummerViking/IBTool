@@ -11,6 +11,7 @@
     This function will get the current Information Barriers Policies Application Status.
 
     #>
+    [OutputType([System.Collections.ArrayList])]
     [CmdletBinding()]
     param (
         # Parameters

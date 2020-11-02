@@ -11,6 +11,7 @@
     This function gets the current Organization Segments in the tenant.
     #>
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+    [OutputType([System.Collections.ArrayList])]
     [CmdletBinding()]
     Param(
         # Parameters
