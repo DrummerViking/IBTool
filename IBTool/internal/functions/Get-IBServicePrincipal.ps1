@@ -1,14 +1,14 @@
 ﻿function Get-IBServicePrincipal {
     <#
     .SYNOPSIS
-    This funciton gets the current Information Barriers Service Principal in the tenant.
+    This function gets the current Information Barriers Service Principal in the tenant.
     
     .DESCRIPTION
-    This funciton gets the current Information Barriers Service Principal in the tenant.
+    This function gets the current Information Barriers Service Principal in the tenant.
     
     .EXAMPLE
     PS C:\> Get-IBServicePrincipal
-    This funciton gets the current Information Barriers Service Principal in the tenant.
+    This function gets the current Information Barriers Service Principal in the tenant.
     #>
     [CmdletBinding()]
     param (

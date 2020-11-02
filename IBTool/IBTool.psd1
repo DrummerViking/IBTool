@@ -3,7 +3,7 @@
 	RootModule = 'IBTool.psm1'
 	
 	# Version number of this module.
-	ModuleVersion = '1.0.18'
+	ModuleVersion = '1.0.19'
 	
 	# ID used to uniquely identify this module
 	GUID = '02adbc63-ac2f-46e0-bbc4-32a47b561894'

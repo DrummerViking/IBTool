@@ -15,6 +15,7 @@
 
     #>
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+    [OutputType([System.Collections.ArrayList])]
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $True, HelpMessage = "Enter Organization Segment Name.")]
@@ -25,8 +26,6 @@
     $array = New-Object System.Collections.ArrayList
     $filter = (Get-OrganizationSegment -Identity $SegmentName).UserGroupFilter
     $array.AddRange( (Get-EXORecipient -Filter $filter -ResultSize Unlimited | Select-Object Name,PrimarySMTPAddress,*recipientType* ) )
-    $dataGrid.datasource = $array
-    $dataGrid.AutoResizeColumns()
-    $MainForm.refresh()
     $statusBar.Text = "Ready. Members found: $($array.count)"
+    return $array
 }

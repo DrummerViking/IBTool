@@ -1,10 +1,10 @@
 ﻿function Get-IBPoliciesRecipientStatus {
     <#
     .SYNOPSIS
-    This funciton gets the current Information Barrier Recipient status.
+    This function gets the current Information Barrier Recipient status.
     
     .DESCRIPTION
-    This funciton gets the current Information Barrier Recipient status between 2 users.
+    This function gets the current Information Barrier Recipient status between 2 users.
     
     .PARAMETER User1
     Defines the first user identity to compare.
@@ -16,9 +16,10 @@
     
     .EXAMPLE
     PS C:\> Get-IBPoliciesRecipientStatus -User1 "john@contoso.com" -User2 "mark@contoso.com"
-    This funciton gets the current Information Barrier Recipient status between john@contoso.com and mark@contoso.com.
+    This function gets the current Information Barrier Recipient status between john@contoso.com and mark@contoso.com.
     
     #>
+    [OutputType([System.Collections.ArrayList])]
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true, HelpMessage = "Defines the first user identity to compare.")]
@@ -31,8 +32,6 @@
     $statusBar.Text = "Running..."
     $array = New-Object System.Collections.ArrayList
     $array.AddRange( (Get-InformationBarrierRecipientStatus -Identity $user1 -Identity2 $user2 -WarningAction SilentlyContinue) )
-    $dataGrid.datasource = $array
-    $dataGrid.AutoResizeColumns()
-    $MainForm.refresh()
     $statusBar.Text = "Ready. Segments found: $($array.count)"
+    return $array
 }
