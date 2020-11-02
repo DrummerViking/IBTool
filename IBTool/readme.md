@@ -2,7 +2,7 @@
 
 ## About
 This tool is intended to easily help on managing Information Barriers in Microsoft Teams.  
-**(10/29/2020 : Tool is still under construction)**
+**(11/02/2020 : Tool is still under construction)**
 
 ## Pre-requisites
 
