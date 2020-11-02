@@ -20,8 +20,6 @@
     $array = New-Object System.Collections.ArrayList
     $results = Get-InformationBarrierPoliciesApplicationStatus -All:$true | Select-Object ApplicationStartTime, ApplicationEndTime, Status, PercentProgress
     $results | ForEach-Object { $null = $array.Add($_) }
-    $dataGrid.datasource = $array
-    $dataGrid.AutoResizeColumns()
-    $MainForm.refresh()
     $statusBar.Text = "Ready."
+    return $array
 }

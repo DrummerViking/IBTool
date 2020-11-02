@@ -154,7 +154,11 @@
         $buttonGetSegments.Name = "GetSegments"
         $buttonGetSegments.Text = "Get Organization Segments"
         $buttonGetSegments.UseVisualStyleBackColor = $True
-        $buttonGetSegments.add_Click({Get-OrgSegments})
+        $buttonGetSegments.add_Click({
+            $Segments = Get-OrgSegments
+            if ($null = $Segments) {Write-PSFHostColor -String "segments var is empty" -DefaultColor red}
+            Add-ArrayToDataGrid -Array $Segments -DataGrid $dataGrid -Form $MainForm
+        })
         $MainForm.Controls.Add($buttonGetSegments)
         #
         # Button Get Information Barriers Policies
@@ -167,7 +171,10 @@
         $buttonGetIBPolicies.Name = "GetIBPolicies"
         $buttonGetIBPolicies.Text = "Get Information Barriers Policies"
         $buttonGetIBPolicies.UseVisualStyleBackColor = $True
-        $buttonGetIBPolicies.add_Click({Get-IBPolicies})
+        $buttonGetIBPolicies.add_Click({
+            $IBPolicies = Get-IBPolicies
+            Add-ArrayToDataGrid -Array $IBPolicies -DataGrid $dataGrid -Form $MainForm
+        })
         $MainForm.Controls.Add($buttonGetIBPolicies)
         #
         # Button Get Information Barriers Policies Application Status
@@ -180,7 +187,10 @@
         $buttonGetIBPoliciesAppStatus.Name = "GetIBPoliciesAppStatus"
         $buttonGetIBPoliciesAppStatus.Text = "Get IB Policies Application Status"
         $buttonGetIBPoliciesAppStatus.UseVisualStyleBackColor = $True
-        $buttonGetIBPoliciesAppStatus.add_Click({Get-IBPoliciesAppStatus})
+        $buttonGetIBPoliciesAppStatus.add_Click({
+            $IBPoliciesAppStatus = Get-IBPoliciesAppStatus
+            Add-ArrayToDataGrid -Array $IBPoliciesAppStatus -DataGrid $dataGrid -Form $MainForm
+        })
         $MainForm.Controls.Add($buttonGetIBPoliciesAppStatus)
         #
         # Horizontal Line 2
@@ -210,7 +220,10 @@
         $buttonGetSegmentMembers.Name = "GetSegmentMembers"
         $buttonGetSegmentMembers.Text = "Get Segment Members"
         $buttonGetSegmentMembers.UseVisualStyleBackColor = $True
-        $buttonGetSegmentMembers.add_Click({Get-SegmentMembers -SegmentName $textBoxOrgSegment.Text.ToString()})
+        $buttonGetSegmentMembers.add_Click({
+            $members = Get-SegmentMembers -SegmentName $textBoxOrgSegment.Text.ToString()
+            Add-ArrayToDataGrid -Array $members -DataGrid $dataGrid -Form $MainForm
+        })
         $MainForm.Controls.Add($buttonGetSegmentMembers)
         #
         # Horizontal Line 3
@@ -256,7 +269,10 @@
         $buttonCompareIdentities.Name = "CompareIdentities"
         $buttonCompareIdentities.Text = "Compare Users"
         $buttonCompareIdentities.UseVisualStyleBackColor = $True
-        $buttonCompareIdentities.add_Click({Get-IBPoliciesRecipientStatus -User1 $textBoxUser1.Text.toString() -User2 $textBoxUser2.Text.toString()})
+        $buttonCompareIdentities.add_Click({
+            $RecipientStatus = Get-IBPoliciesRecipientStatus -User1 $textBoxUser1.Text.toString() -User2 $textBoxUser2.Text.toString()
+            Add-ArrayToDataGrid -Array $RecipientStatus -DataGrid $dataGrid -Form $MainForm
+        })
         $MainForm.Controls.Add($buttonCompareIdentities)
         #
         # Horizontal Line 4

@@ -1,5 +1,8 @@
 ﻿# Changelog  
 
+## 1.0.19 (2020-10-29)  
+- Fixed: Updated some grammar errors.  
+
 ## 1.0.18 (2020-10-29)  
 - Fixed: Updated Connect-OnlineServices function to invert the order of services to connect, to prevent cmdlet overlapping.  
 - New: Added function to check (and add if missing) an existing AzureAD Service Principal for "information Barrier Processor" Enterprise App.  

@@ -1,10 +1,10 @@
 ﻿function New-IBServicePrincipal {
     <#
     .SYNOPSIS
-    This funciton creates a new Information Barriers Service Principal in the tenant.
+    This function creates a new Information Barriers Service Principal in the tenant.
     
     .DESCRIPTION
-    This funciton creates a new Information Barriers Service Principal in the tenant.
+    This function creates a new Information Barriers Service Principal in the tenant.
 
     .PARAMETER Confirm
     If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
@@ -14,7 +14,7 @@
 
     .EXAMPLE
     PS C:\> New-IBServicePrincipal
-    This funciton creates a new Information Barriers Service Principal in the tenant.
+    This function creates a new Information Barriers Service Principal in the tenant.
 
     #>
     [CmdletBinding(SupportsShouldProcess = $True, ConfirmImpact = 'Low')]
