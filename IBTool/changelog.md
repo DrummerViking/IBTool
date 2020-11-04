@@ -1,5 +1,8 @@
 ﻿# Changelog  
 
+## 1.0.20 (2020-11-04)  
+- Fixed: Updated Recipient Status function to compare users.  
+
 ## 1.0.19 (2020-10-29)  
 - Fixed: Updated some grammar errors.  
 

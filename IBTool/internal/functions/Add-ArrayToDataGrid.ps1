@@ -6,7 +6,7 @@
     .DESCRIPTION
     Adds passed Array data to the DataGrid
     
-    .PARAMETER Array
+    .PARAMETER ArrayData
     Array data source to add to the DataGrid
 
     .PARAMETER DataGrid
@@ -16,18 +16,18 @@
     Windows main Form to be refreshed.
 
     .EXAMPLE
-    PS C:\> Add-ArrayToDataGrid -Array $MyData -DataGrid $MyGrid
+    PS C:\> Add-ArrayToDataGrid -ArrayData $MyData -DataGrid $MyGrid
     Adds array data '$MyData' to the DataGrid '$MyGrid'
     #>
     [CmdletBinding()]
     param (
-        $Array,
+        $ArrayData,
 
         $DataGrid,
 
         $Form
     )
-    $DataGrid.datasource = $array
+    $DataGrid.datasource = $ArrayData
     $DataGrid.AutoResizeColumns()
     $Form.Refresh()
 }

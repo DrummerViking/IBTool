@@ -5,6 +5,9 @@
     
     .DESCRIPTION
     This function gets the current Information Barriers Policies in the tenant.
+
+    .PARAMETER ShowOutputLine
+    Use this switch to show a small output line to Powershell session.
     
     .EXAMPLE
     PS C:\> Get-IBPolicies
@@ -14,9 +17,9 @@
     [OutputType([System.Collections.ArrayList])]
     [CmdletBinding()]
     Param(
-        # Parameters
+        [Switch]$ShowOutputline
     )
-    Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Getting current Information Barriers Policies."
+    if ( $ShowOutputline ) { Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Getting current Information Barriers Policies." }
     $statusBar.Text = "Running..."
     $array = New-Object System.Collections.ArrayList
     $array.AddRange( (Get-InformationBarrierPolicy | Select-Object Name, State, AssignedSegment, SegmentsAllowed, SegmentsBlocked, block*) )
