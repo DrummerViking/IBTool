@@ -6,6 +6,9 @@
     .DESCRIPTION
     This function gets the current Organization Segments in the tenant.
     
+    .PARAMETER ShowOutputLine
+    Use this switch to show a small output line to Powershell session.
+
     .EXAMPLE
     PS C:\> Get-OrgSegments
     This function gets the current Organization Segments in the tenant.
@@ -14,12 +17,15 @@
     [OutputType([System.Collections.ArrayList])]
     [CmdletBinding()]
     Param(
-        # Parameters
+        [Switch]$ShowOutputline
     )
-    Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Getting current Organization Segments."
+    if ( $ShowOutputline ) { Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Getting current Organization Segments." }
     $statusBar.Text = "Running..."
     $array = New-Object System.Collections.ArrayList
-    $array = Get-OrganizationSegment | Select-Object Name,UserGroupFilter,CreatedBy,WhenCreated
+    $array.AddRange( (Get-OrganizationSegment | Select-Object Name,UserGroupFilter,CreatedBy,WhenCreated) )
+    #$dataGrid.datasource = $array
+    #$dataGrid.AutoResizeColumns()
+    #$MainForm.Refresh()
     $statusBar.Text = "Ready. Segments found: $($array.count)"
     return $array
 }
