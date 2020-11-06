@@ -32,6 +32,9 @@
     $array = New-Object System.Collections.ArrayList
     $filter = (Get-OrganizationSegment -Identity $SegmentName).UserGroupFilter
     $array.AddRange( (Get-EXORecipient -Filter $filter -ResultSize Unlimited | Select-Object Name,PrimarySMTPAddress,*recipientType* ) )
+    #$dataGrid.datasource = $array
+    #$dataGrid.AutoResizeColumns()
+    #$MainForm.Refresh()
     $statusBar.Text = "Ready. Members found: $($array.count)"
     return $array
 }

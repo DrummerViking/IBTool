@@ -61,7 +61,7 @@
                 }
                 catch {
                     if ( ($_.Exception.InnerException.InnerException.InnerException.InnerException.ErrorCode | ConvertFrom-Json).error -eq 'interaction_required' ) {
-                        Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your are account seems to be requiring MFA to connect to Azure AD. Requesting to authenticate"
+                        Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your account seems to be requiring MFA to connect to Azure AD. Requesting to authenticate"
                         $null = Connect-AzureAD -AccountId $Credential.UserName.toString() -ErrorAction Stop
                     }
                     else {
@@ -83,7 +83,7 @@
                 }
                 catch {
                     if ( ($_.Exception.InnerException.InnerException.InnerException.InnerException.ErrorCode | ConvertFrom-Json).error -eq 'interaction_required' ) {
-                        Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your are account seems to be requiring MFA to connect to Azure AD. Requesting to authenticate"
+                        Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your account seems to be requiring MFA to connect to Azure AD. Requesting to authenticate"
                         $null = Connect-AzureAD -AccountId $Credential.UserName.toString() -ErrorAction Stop
                     }
                     else {
@@ -104,7 +104,7 @@
                     Connect-MsolService -Credential $Credential -ErrorAction Stop
                 }
                 catch {
-                    Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your are account seems to be requiring MFA to connect to MS Online. Requesting to authenticate"
+                    Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your account seems to be requiring MFA to connect to MS Online. Requesting to authenticate"
                     Connect-MsolService -ErrorAction Stop
                 }
             } -EnableException $true -PSCmdlet $PSCmdlet
@@ -126,7 +126,7 @@
                 }
                 catch {
                     if ( ($_.Exception.InnerException.InnerException.InnerException.InnerException.ErrorCode | ConvertFrom-Json).error -eq 'interaction_required' ) {
-                        Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your are account seems to be requiring MFA to connect to MicrosoftTeams. Requesting to authenticate"
+                        Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your account seems to be requiring MFA to connect to MicrosoftTeams. Requesting to authenticate"
                         #Connect to Microsoft Teams
                         $null = Connect-MicrosoftTeams -ErrorAction Stop
     
@@ -149,8 +149,8 @@
                 }
                 catch {
                     if ( ($_.Exception.InnerException.InnerException.InnerException.InnerException.ErrorCode | ConvertFrom-Json).error -eq 'interaction_required' ) {
-                        Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your are account seems to be requiring MFA to connect to Security and Compliance. Requesting to authenticate"
-                        Connect-IPPSSession -UserPrincipalName $Credential.Username.toString() -Prefix SCC -ErrorAction Stop -WarningAction SilentlyContinue
+                        Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your account seems to be requiring MFA to connect to Security and Compliance. Requesting to authenticate"
+                        Connect-IPPSSession -UserPrincipalName $Credential.Username.toString() -ErrorAction Stop -WarningAction SilentlyContinue
                     }
                     else {
                         return $_
@@ -170,7 +170,7 @@
                 }
                 catch {
                     if ( ($_.Exception.InnerException.InnerException.InnerException.InnerException.ErrorCode | ConvertFrom-Json).error -eq 'interaction_required' ) {
-                        Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your are account seems to be requiring MFA to connect to Exchange Online. Requesting to authenticate"
+                        Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your account seems to be requiring MFA to connect to Exchange Online. Requesting to authenticate"
                         Connect-ExchangeOnline -UserPrincipalName $Credential.Username.toString() -ShowBanner:$False -ErrorAction Stop
                     }
                     else {
