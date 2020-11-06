@@ -5,10 +5,10 @@
 	.DESCRIPTION
 		This script installs the IBTool Module from github.
 		
-		It does so by
-		downloading the specified branch as zip to $env:TEMP
-		Unpacking that zip file to a folder in $env:TEMP
-		Moving that content to a module folder in either program files (default) or the user profile
+		It does so by ...
+		- downloading the specified branch as zip to $env:TEMP
+		- Unpacking that zip file to a folder in $env:TEMP
+		- Moving that content to a module folder in either program files (default) or the user profile
 	
 	.PARAMETER Branch
 		The branch to install. Installs master by default.
