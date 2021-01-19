@@ -21,11 +21,11 @@
     #>
     [CmdletBinding()]
     param (
-        $ArrayData,
+        [System.Collections.ArrayList]$ArrayData,
 
-        $DataGrid,
+        [System.Windows.Forms.DataGridView]$DataGrid,
 
-        $Form
+        [System.Windows.Forms.Form]$Form
     )
     $DataGrid.datasource = $ArrayData
     $DataGrid.AutoResizeColumns()
