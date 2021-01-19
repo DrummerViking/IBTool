@@ -2,7 +2,10 @@
 
 ## About
 This tool is intended to easily help on managing Information Barriers in Microsoft Teams.  
-**(11/06/2020 : Tool is still under construction)**
+- You can list current Information Barrier Segments.  
+- Get Segment's members.  
+- Get current Information Barriers policies.  
+- Verify if there is any policy involved between 2 users.  
 
 ## Pre-requisites
 
