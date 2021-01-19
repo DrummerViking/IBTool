@@ -6,6 +6,9 @@
     .DESCRIPTION
     Function to start the 'Information Barriers' tool.
     
+    .PARAMETER CheckForUpdates
+    Use this optional parameters to check for updates, and if found install them.
+
     .PARAMETER Confirm
     If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 
@@ -18,8 +21,11 @@
     #>
     [CmdletBinding(SupportsShouldProcess = $True, ConfirmImpact = 'Low')]
     param (
-        # Parameters
+        [switch]$CheckForUpdates
     )
+
+    # check for Updates
+    if ( $CheckForUpdates ) { Get-IBToolUpdates }
 
     # Check current connection status, and connect if needed
     $ServicesToConnect = Assert-ServiceConnection

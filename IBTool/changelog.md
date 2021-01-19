@@ -2,6 +2,7 @@
 
 ## 1.0.0 (2021-01-19)  
 - Update: First release  
+- New: Added "-CheckForUpdates" parameter, to let the command search for, and install a new version if found.
 
 ## 0.0.21 (2020-11-06)  
 - Fixed: Updated some grammar errors.  
