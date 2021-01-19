@@ -1,5 +1,8 @@
 ﻿# Changelog  
 
+## 1.0.0 (2021-01-19)  
+- Update: First release  
+
 ## 0.0.21 (2020-11-06)  
 - Fixed: Updated some grammar errors.  
 

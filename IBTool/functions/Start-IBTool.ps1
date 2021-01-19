@@ -6,9 +6,6 @@
     .DESCRIPTION
     Function to start the 'Information Barriers' tool.
     
-    .PARAMETER Credential
-    Credential to use for the connection.
-
     .PARAMETER Confirm
     If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 
@@ -27,7 +24,7 @@
     # Check current connection status, and connect if needed
     $ServicesToConnect = Assert-ServiceConnection
     # Connect to services if ArrayList is not empty
-    if ( $ServicesToConnect.Count ) { Connect-OnlineServices -Credential $Credential -Services $ServicesToConnect }
+    if ( $ServicesToConnect.Count ) { Connect-OnlineServices -Credential $Credentials -Services $ServicesToConnect }
 
     function GenerateForm {
         #region Import the Assemblies
@@ -269,7 +266,7 @@
         $buttonCompareIdentities.Text = "Compare Users"
         $buttonCompareIdentities.UseVisualStyleBackColor = $True
         $buttonCompareIdentities.add_Click({
-            $RecipientStatus = Get-IBPoliciesRecipientStatus -User1 $textBoxUser1.Text.toString() -User2 $textBoxUser2.Text.toString() -ShowOutputLine
+            $RecipientStatus = @(Get-IBPoliciesRecipientStatus -User1 $textBoxUser1.Text.toString() -User2 $textBoxUser2.Text.toString() -ShowOutputLine)
             Add-ArrayToDataGrid -ArrayData $RecipientStatus -DataGrid $dataGrid -Form $MainForm
         })
         $MainForm.Controls.Add($buttonCompareIdentities)

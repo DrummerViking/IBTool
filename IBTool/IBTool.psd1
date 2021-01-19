@@ -3,7 +3,7 @@
 	RootModule = 'IBTool.psm1'
 	
 	# Version number of this module.
-	ModuleVersion = '0.0.21'
+	ModuleVersion = '1.0.0'
 	
 	# ID used to uniquely identify this module
 	GUID = '02adbc63-ac2f-46e0-bbc4-32a47b561894'
@@ -26,7 +26,7 @@
 	# Modules that must be imported into the global environment prior to importing
 	# this module
 	RequiredModules = @(
-		@{ ModuleName='PSFramework'; ModuleVersion='1.4.150' }
+		@{ ModuleName='PSFramework'; ModuleVersion='1.5.170' }
 		@{ ModuleName='ExchangeOnlineManagement'; ModuleVersion='2.0.3'}
 	)
 	
@@ -40,7 +40,7 @@
 	# FormatsToProcess = @('xml\IBTool.Format.ps1xml')
 	
 	# Functions to export from this module
-	FunctionsToExport = 'Start-IbTool'
+	FunctionsToExport = 'Start-IBTool'
 	
 	# Cmdlets to export from this module
 	CmdletsToExport = ''
