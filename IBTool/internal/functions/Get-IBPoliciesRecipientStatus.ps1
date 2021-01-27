@@ -39,7 +39,7 @@
     $array = New-Object System.Collections.ArrayList
     $SegmentsFound1 = New-Object System.Collections.ArrayList
     $SegmentsFound2 = New-Object System.Collections.ArrayList
-    $AllSegments = get-orgSegments
+    $AllSegments = get-OrgSegments
     foreach ($segment in $AllSegments){
         $Members = Get-SegmentMembers -SegmentName $segment.name
         if ( $Members.PrimarySMTPAddress -eq $user1 ) { $null = $SegmentsFound1.add($segment) }

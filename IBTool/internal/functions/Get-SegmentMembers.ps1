@@ -31,7 +31,7 @@
     $statusBar.Text = "Running..."
     $array = New-Object System.Collections.ArrayList
     $filter = (Get-OrganizationSegment -Identity $SegmentName).UserGroupFilter
-    $array.AddRange( (Get-EXORecipient -Filter $filter -ResultSize Unlimited | Select-Object Name,PrimarySMTPAddress,*recipientType* ) )
+    $array.Add( (Get-EXORecipient -Filter $filter -ResultSize Unlimited | Select-Object Name,PrimarySMTPAddress,*recipientType* ) )
 
     $statusBar.Text = "Ready. Members found: $($array.count)"
     return $array
