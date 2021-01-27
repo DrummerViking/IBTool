@@ -2,10 +2,14 @@
 
 ## About
 This tool is intended to easily help on managing Information Barriers in Microsoft Teams.  
-- You can list current Information Barrier Segments.  
+- You can list current Organization Segments.  
 - Get Segment's members.  
 - Get current Information Barriers policies.  
 - Verify if there is any policy involved between 2 users.  
+- Create new Organization Segments.
+- Create new Information Barrier policies.
+- Start Applying the Information Barrier Policies.
+- Get current Information Barrier Policies application status.
 
 ## Pre-requisites
 
