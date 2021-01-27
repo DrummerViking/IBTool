@@ -6,9 +6,6 @@
     .DESCRIPTION
     Function to start the 'Information Barriers' tool.
     
-    .PARAMETER CheckForUpdates
-    Use this optional parameters to check for updates, and if found install them.
-
     .PARAMETER Confirm
     If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 
@@ -21,11 +18,8 @@
     #>
     [CmdletBinding(SupportsShouldProcess = $True, ConfirmImpact = 'Low')]
     param (
-        [switch]$CheckForUpdates
+        # Parameters
     )
-
-    # check for Updates
-    if ( $CheckForUpdates ) { Get-IBToolUpdates }
 
     # Check current connection status, and connect if needed
     $ServicesToConnect = Assert-ServiceConnection
@@ -96,9 +90,9 @@
 
         $labelNewSegmentHelp_Click={
             [Microsoft.VisualBasic.Interaction]::MsgBox("This option is to create a simple Organization Segment. If you need to create a more complex segment with more attributes and combinations, please do them with powershell.
-    
-More info at: https://docs.microsoft.com/en-us/microsoft-365/compliance/information-barriers-policies?view=o365-worldwide#part-1-segment-users 
-    
+
+More info at: https://docs.microsoft.com/en-us/microsoft-365/compliance/information-barriers-policies?view=o365-worldwide#part-1-segment-users
+
 Press CTRL + C to copy this message to clipboard.",[Microsoft.VisualBasic.MsgBoxStyle]::Okonly,"Information Message")
         }
 

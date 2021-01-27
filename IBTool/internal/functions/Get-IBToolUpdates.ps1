@@ -1,16 +1,15 @@
 Function Get-IBToolUpdates {
     <#
     .SYNOPSIS
-    Short description
+    Function to get and fetch updates for the IBTool Module.
     
     .DESCRIPTION
-    Long description
+    Function to get and fetch updates for the IBTool Module.
     
     .EXAMPLE
-    An example
+    PS C:\> Get-IBToolUpdates
+    Will get the current module version from PowershellGallery, and if newer, will download and update it.
     
-    .NOTES
-    General notes
     #>
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
     [CmdletBinding()]

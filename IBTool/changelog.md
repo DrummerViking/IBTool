@@ -1,14 +1,13 @@
 ﻿# Changelog  
 
 ## 2.0.0 (2021-01-27)  
-- New: Added section to create new Organization segments.
-- New: Added section to create new Information Barrier Policy.
-- New: Added button to start IB Policies application.
-- Fixed: some cosmetic and button organizations in the window Form.
+- New: Added section to create new Organization segments.  
+- New: Added section to create new Information Barrier Policy.  
+- New: Added button to start IB Policies application.  
+- Fixed: some cosmetic and button organizations in the window Form.  
 
 ## 1.0.0 (2021-01-19)  
 - Update: First release  
-- New: Added "-CheckForUpdates" parameter, to let the command search for, and install a new version if found.
 
 ## 0.0.21 (2020-11-06)  
 - Fixed: Updated some grammar errors.  

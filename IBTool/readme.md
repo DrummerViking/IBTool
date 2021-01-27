@@ -33,4 +33,4 @@ Update-Module IBTool -Force
 ```
 
 ## Version History  
-[Change Log](/IBTool/changelog.md)
+[Change Log](/changelog.md)
