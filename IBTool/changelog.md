@@ -1,10 +1,11 @@
 ﻿# Changelog  
 
-## 2.0.0 (2021-01-27)  
+## 2.0.1 (2021-01-27)  
 - New: Added section to create new Organization segments.  
 - New: Added section to create new Information Barrier Policy.  
 - New: Added button to start IB Policies application.  
 - Fixed: some cosmetic and button organizations in the window Form.  
+- Fixed: Get-SegmentMembers function which was throwing an error in Powershell console.
 
 ## 1.0.0 (2021-01-19)  
 - Update: First release  
