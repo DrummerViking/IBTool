@@ -10,11 +10,17 @@
 	.PARAMETER Identity
 	Defines the Organization Segment Name to be removed.
 	
+	.PARAMETER Confirm
+    If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+
+    .PARAMETER WhatIf
+    If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
+   
 	.EXAMPLE
 	PS C:\> Remove-OrgSegment -Identity "Manager Users"
 	This command will remove the Organization Segment named "Manager Users".	
 	#>
-	[CmdletBinding()]
+	[CmdletBinding(SupportsShouldProcess = $True, ConfirmImpact = 'Low')]
 	Param (
 		[String]$Identity
 	)
