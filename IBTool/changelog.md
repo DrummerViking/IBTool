@@ -1,5 +1,11 @@
 ﻿# Changelog  
 
+## 2.0.5 (2021-09-16)  
+- New: Added section to remove Organization Segments and IB Policies.  
+- Updated: Updated section to create Organization Segments and added edition functionality.
+- Updated: All new IB Policies created will be with 'Inactive' state, until IB Policy Application is started.
+- Fixed: Added validation to prevent the mix with 'AzureAD' and 'AzureADPreview' powershell modules.
+
 ## 2.0.1 (2021-01-27)  
 - New: Added section to create new Organization segments.  
 - New: Added section to create new Information Barrier Policy.  

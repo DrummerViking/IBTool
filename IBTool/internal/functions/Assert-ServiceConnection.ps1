@@ -23,6 +23,12 @@
     # Check if EXO connection
     if ( $Sessions.ComputerName -notcontains "outlook.office365.com" ) { $null = $ServicesToConnect.add("EXO") }
 
+    # Check if AzureADPreview is present
+    if (Get-module "AzureADPreview" -ListAvailable ) {
+        Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] 'AzureADPreview' module is not supported. Please remove it and install 'AzureAD' only."
+        break
+    }
+
     # Check if AzureAD connection
     try{
         $Null = Get-AzureADCurrentSessionInfo -ErrorAction Stop

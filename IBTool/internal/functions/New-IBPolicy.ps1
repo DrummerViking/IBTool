@@ -48,10 +48,10 @@
 
 		if ($AssignedAction -eq "SegmentsAllowed") {
 			$null = $segmentsList.add( $AssignedSegment )
-			New-InformationBarrierPolicy -Name $PolicyName -AssignedSegment $AssignedSegment -SegmentsAllowed $segmentsList -State Active -Confirm:$False -ErrorAction Stop
+			New-InformationBarrierPolicy -Name $PolicyName -AssignedSegment $AssignedSegment -SegmentsAllowed $segmentsList -State Inactive -Confirm:$False -ErrorAction Stop
 		}
 		else {
-			New-InformationBarrierPolicy -Name $PolicyName -AssignedSegment $AssignedSegment -SegmentsBlocked $segmentsList -State Active -Confirm:$False -ErrorAction Stop
+			New-InformationBarrierPolicy -Name $PolicyName -AssignedSegment $AssignedSegment -SegmentsBlocked $segmentsList -State Inactive -Confirm:$False -ErrorAction Stop
 		}
 		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Successfully created Information Barrier Policy '$PolicyName'."
 		$statusBar.Text = "Ready. Created Information Barrier Policy '$PolicyName'."
