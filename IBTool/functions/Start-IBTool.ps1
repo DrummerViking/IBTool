@@ -596,7 +596,7 @@ Press CTRL + C to copy this message to clipboard.",[Microsoft.VisualBasic.MsgBox
         $textRemoveIBPolicyName.Size = New-Object System.Drawing.Size(200,20)
         $textRemoveIBPolicyName.Name = "textRemoveIBPolicyName"
         $textRemoveIBPolicyName.Text = "Organization Segment or IB Policy name"
-        $MainForm.Controls.Add($textRemoveIBPolicyName)        
+        $MainForm.Controls.Add($textRemoveIBPolicyName)
         #
         # Button to Remove OrganizationSegment
         #

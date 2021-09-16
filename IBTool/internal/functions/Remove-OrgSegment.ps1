@@ -18,7 +18,7 @@
    
 	.EXAMPLE
 	PS C:\> Remove-OrgSegment -Identity "Manager Users"
-	This command will remove the Organization Segment named "Manager Users".	
+	This command will remove the Organization Segment named "Manager Users".
 	#>
 	[CmdletBinding(SupportsShouldProcess = $True, ConfirmImpact = 'Low')]
 	Param (
