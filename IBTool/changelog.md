@@ -1,5 +1,8 @@
 ﻿# Changelog  
 
+## 2.0.6 (2021-09-17)  
+- New: Added an auto-check for update version and Toast Notify the user about it.  
+
 ## 2.0.5 (2021-09-16)  
 - New: Added section to remove Organization Segments and IB Policies.  
 - Updated: Updated section to create Organization Segments and added edition functionality.

@@ -21,22 +21,12 @@
         # Parameters
     )
     # check for updates
-    $global:updateJob = Start-Job -ScriptBlock {
-        $script:ModuleRoot = $PSScriptRoot
-        $ModuleFileName = (Import-PowerShellDataFile -Path "$($script:ModuleRoot)\IBTool.psd1").RootModule
-        $ModuleName = $ModuleFileName.Substring(0,$ModuleFileName.IndexOf("."))
-        $script:ModuleVersion = (Import-PowerShellDataFile -Path "$($script:ModuleRoot)\IBTool.psd1").ModuleVersion
+    $runspaceData = Start-ModuleUpdate -ModuleRoot $script:ModuleRoot
 
-        $GalleryModule = Find-Module -Name $ModuleName -Repository PSGallery
-        if ( 2.0.1 -lt $GalleryModule.version ) {
-            $bt = New-BTButton -Content "Get Update" -Arguments "https://github.com/agallego-css/IBTool#installation"
-            New-BurntToastNotification -Text 'IBTool Update found', 'There is a new version of this module available.' -Button $bt
-        }
-    }
     # Check current connection status, and connect if needed
     $ServicesToConnect = Assert-ServiceConnection
     # Connect to services if ArrayList is not empty
-    if ( $ServicesToConnect.Count ) { Connect-OnlineServices -Credential $Credentials -Services $ServicesToConnect }
+    if ( $ServicesToConnect.Count ) { Connect-OnlineServices -Services $ServicesToConnect }
 
     function GenerateForm {
         #region Import the Assemblies
@@ -667,5 +657,10 @@ Press CTRL + C to copy this message to clipboard.",[Microsoft.VisualBasic.MsgBox
     } #End Function
 
     #Call the Function
-    GenerateForm
+    try {
+        GenerateForm
+    }
+    finally {
+        Stop-ModuleUpdate -RunspaceData $runspaceData
+    }
 }
