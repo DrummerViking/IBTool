@@ -3,7 +3,7 @@
 	RootModule = 'IBTool.psm1'
 	
 	# Version number of this module.
-	ModuleVersion = '2.0.1'
+	ModuleVersion = '2.0.5'
 	
 	# ID used to uniquely identify this module
 	GUID = '02adbc63-ac2f-46e0-bbc4-32a47b561894'
@@ -27,6 +27,7 @@
 	# this module
 	RequiredModules = @(
 		@{ ModuleName='PSFramework'; ModuleVersion='1.5.170' }
+		#@{ ModuleName='AzureAD'; ModuleVersion='2.0.2.135' }
 		@{ ModuleName='ExchangeOnlineManagement'; ModuleVersion='2.0.3'}
 	)
 	

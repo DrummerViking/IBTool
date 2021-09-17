@@ -79,6 +79,13 @@
         $textAorBSegment = New-Object System.Windows.Forms.TextBox
         $buttonCreateIBpolicy = New-Object System.Windows.Forms.Button
         $buttonStartIBPolicyApplication = New-Object System.Windows.Forms.Button
+        $HorizontalLine6 = New-Object System.Windows.Forms.Label
+        $labelRemoveIBPolicyTitle = New-Object System.Windows.Forms.Label
+        $labelRemoveIBPolicyName = New-Object System.Windows.Forms.Label
+        $textRemoveIBPolicyName = New-Object System.Windows.Forms.TextBox
+        $buttonRemoveSegment = New-Object System.Windows.Forms.Button
+        $buttonRemoveIBpolicy = New-Object System.Windows.Forms.Button
+
         $dataGrid = New-Object System.Windows.Forms.DataGridView
         $InitialFormWindowState = New-Object System.Windows.Forms.FormWindowState
         #endregion Creating required Forms Objects
@@ -89,7 +96,9 @@
         }
 
         $labelNewSegmentHelp_Click={
-            [Microsoft.VisualBasic.Interaction]::MsgBox("This option is to create a simple Organization Segment. If you need to create a more complex segment with more attributes and combinations, please do them with powershell.
+            [Microsoft.VisualBasic.Interaction]::MsgBox("This option is to create or edit a simple Organization Segment. If you need to create a more complex segment with more attributes and combinations, please do them with powershell.
+
+If you are trying to create a new Organization Segment with the same name as an existing one, we will overwrite the current one with the new setings.
 
 More info at: https://docs.microsoft.com/en-us/microsoft-365/compliance/information-barriers-policies?view=o365-worldwide#part-1-segment-users
 
@@ -350,15 +359,15 @@ Press CTRL + C to copy this message to clipboard.",[Microsoft.VisualBasic.MsgBox
         # Label New Segment Name Title
         #
         $labelNewSegmentTitle.Location = New-Object System.Drawing.Point(10,($HorizontalLine4.Location.Y + 10))
-        $labelNewSegmentTitle.Size = New-Object System.Drawing.Size(200,20)
+        $labelNewSegmentTitle.Size = New-Object System.Drawing.Size(220,20)
         $labelNewSegmentTitle.Name = "labelNewSegmentTitle"
-        $labelNewSegmentTitle.Text = "Create a new Organization Segment"
+        $labelNewSegmentTitle.Text = "Create or Edit an Organization Segment"
         $labelNewSegmentTitle.Font = New-Object System.Drawing.Font("Arial",8,[System.Drawing.FontStyle]::Bold)
         $MainForm.Controls.Add($labelNewSegmentTitle)
         #
         # Label New Segment Title Help
         #
-        $labelNewSegmentHelp.Location = New-Object System.Drawing.Point(220,($HorizontalLine4.Location.Y + 10))
+        $labelNewSegmentHelp.Location = New-Object System.Drawing.Point(240,($HorizontalLine4.Location.Y + 10))
         $labelNewSegmentHelp.Size = New-Object System.Drawing.Size(30,20)
         $labelNewSegmentHelp.Name = "labelNewSegmentHelp"
         $labelNewSegmentHelp.ForeColor = "Blue"
@@ -442,13 +451,12 @@ Press CTRL + C to copy this message to clipboard.",[Microsoft.VisualBasic.MsgBox
         $buttonCreateSegment.Size = New-Object System.Drawing.Size(100,25)
         $buttonCreateSegment.TabIndex = 17
         $buttonCreateSegment.Name = "buttonCreateSegment"
-        $buttonCreateSegment.Text = "Create"
+        $buttonCreateSegment.Text = "Create / Set"
         $buttonCreateSegment.UseVisualStyleBackColor = $True
         $buttonCreateSegment.add_Click({
             New-OrgSegment -Name $textNewSegmentName.Text.toString() -GroupFilter $comboBoxAttributelist.SelectedItem.ToString() -Comparison $comboBoxComparison.SelectedItem.ToString() -AttributeValue $textAttributeValue.Text.ToString()
         })
         $MainForm.Controls.Add($buttonCreateSegment)
-
         #
         # Horizontal Line 5
         #
@@ -556,12 +564,76 @@ Press CTRL + C to copy this message to clipboard.",[Microsoft.VisualBasic.MsgBox
         })
         $MainForm.Controls.Add($buttonStartIBPolicyApplication)
         #
+        # Horizontal Line 6
+        #
+        $HorizontalLine6.Location = New-Object System.Drawing.Point(5,($buttonStartIBPolicyApplication.Location.Y + 40))
+        $HorizontalLine6.Size = New-Object System.Drawing.Size(1090,2)
+        $HorizontalLine6.Name = "HorizontalLine5"
+        $HorizontalLine6.Text = $null
+        $HorizontalLine6.BorderStyle = [System.Windows.Forms.BorderStyle]::Fixed3D
+        $MainForm.Controls.Add($HorizontalLine6)
+        #
+        # Label Remove Segment/Policy Title
+        #
+        $labelRemoveIBPolicyTitle.Location = New-Object System.Drawing.Point(10,($HorizontalLine6.Location.Y + 10))
+        $labelRemoveIBPolicyTitle.Size = New-Object System.Drawing.Size(350,20)
+        $labelRemoveIBPolicyTitle.Name = "labelRemoveIBPolicyTitle"
+        $labelRemoveIBPolicyTitle.Text = "Remove Organization Segment or Information Barrier Policy"
+        $labelRemoveIBPolicyTitle.Font = New-Object System.Drawing.Font("Arial",8,[System.Drawing.FontStyle]::Bold)
+        $MainForm.Controls.Add($labelRemoveIBPolicyTitle)
+        #
+        # Label Remove Policy Name
+        #
+        $labelRemoveIBPolicyName.Location = New-Object System.Drawing.Point(10,($labelRemoveIBPolicyTitle.Location.Y + 28))
+        $labelRemoveIBPolicyName.Size = New-Object System.Drawing.Size(40,20)
+        $labelRemoveIBPolicyName.Name = "labelRemoveIBPolicyName"
+        $labelRemoveIBPolicyName.Text = "Name:"
+        $MainForm.Controls.Add($labelRemoveIBPolicyName)
+        #
+        # Textbox Remove names
+        #
+        $textRemoveIBPolicyName.Location = New-Object System.Drawing.Point(55,($labelRemoveIBPolicyTitle.Location.Y + 25))
+        $textRemoveIBPolicyName.Size = New-Object System.Drawing.Size(200,20)
+        $textRemoveIBPolicyName.Name = "textRemoveIBPolicyName"
+        $textRemoveIBPolicyName.Text = "Organization Segment or IB Policy name"
+        $MainForm.Controls.Add($textRemoveIBPolicyName)
+        #
+        # Button to Remove OrganizationSegment
+        #
+        $buttonRemoveSegment.DataBindings.DefaultDataSourceUpdateMode = 0
+        $buttonRemoveSegment.ForeColor = [System.Drawing.Color]::FromArgb(255,0,0,0)
+        $buttonRemoveSegment.Location = New-Object System.Drawing.Point(300,($labelRemoveIBPolicyTitle.Location.Y + 23))
+        $buttonRemoveSegment.Size = New-Object System.Drawing.Size(150,25)
+        $buttonRemoveSegment.TabIndex = 17
+        $buttonRemoveSegment.Name = "buttonRemoveSegment"
+        $buttonRemoveSegment.Text = "Remove Org Segment"
+        $buttonRemoveSegment.UseVisualStyleBackColor = $True
+        $buttonRemoveSegment.add_Click({
+            Remove-OrgSegment -Identity $textRemoveIBPolicyName.Text
+        })
+        $MainForm.Controls.Add($buttonRemoveSegment)
+         #
+        # Button to Remove OrganizationSegment
+        #
+        $buttonRemoveIBpolicy.DataBindings.DefaultDataSourceUpdateMode = 0
+        $buttonRemoveIBpolicy.ForeColor = [System.Drawing.Color]::FromArgb(255,0,0,0)
+        $buttonRemoveIBpolicy.Location = New-Object System.Drawing.Point(470,($labelRemoveIBPolicyTitle.Location.Y + 23))
+        $buttonRemoveIBpolicy.Size = New-Object System.Drawing.Size(150,25)
+        $buttonRemoveIBpolicy.TabIndex = 17
+        $buttonRemoveIBpolicy.Name = "buttonRemoveIBpolicy"
+        $buttonRemoveIBpolicy.Text = "Remove IB Policy"
+        $buttonRemoveIBpolicy.UseVisualStyleBackColor = $True
+        $buttonRemoveIBpolicy.add_Click({
+            Remove-IBPolicy -Identity $textRemoveIBPolicyName.Text
+        })
+        $MainForm.Controls.Add($buttonRemoveIBpolicy)
+        #
         # Data Grid outputs
         #
         $dataGrid.Anchor = 15
         $dataGrid.DataBindings.DefaultDataSourceUpdateMode = 0
         $dataGrid.DataMember = ""
-        $dataGrid.Location = New-Object System.Drawing.Point(5,500)
+        $dataGrid.Location = New-Object System.Drawing.Point(5,560)
         $dataGrid.Size = New-Object System.Drawing.Size(1090,240)
         $dataGrid.Name = "dataGrid"
         $dataGrid.ReadOnly = $True

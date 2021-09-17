@@ -19,11 +19,17 @@
 	.PARAMETER AttributeValue
 	Defines the attribute value.
 	
+	.PARAMETER Confirm
+    If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
+
+    .PARAMETER WhatIf
+    If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
+   
 	.EXAMPLE
 	PS C:\> New-OrgSegment -Name "test users" -GroupFilter "Company" -Comparison "equals" -AttributeValue "Contoso.com"
 	This command will create the new Organization Segment named "Test users" based on the "Company" user's attribute, being Equals to "Contoso.com".
 	#>
-	[CmdletBinding()]
+	[CmdletBinding(SupportsShouldProcess = $True, ConfirmImpact = 'Low')]
 	Param (
 		[Parameter(Mandatory = $true, HelpMessage = "Defines the Organization Segment Name.")]
 		[String]$Name,
@@ -42,13 +48,18 @@
 
 	$statusBar.Text = "Running..."
 	try {
-		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Creating new Organization Segment '$Name'."
-		New-OrganizationSegment -Name $Name -UserGroupFilter "$GroupFilter -$comp '$AttributeValue'" -errorAction Stop
-		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Successfully created Organization Segment '$Name'."
-		$statusBar.Text = "Ready. Created Organization Segment '$Name'."
+		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Creating / editing Organization Segment '$Name'."
+		if ( Get-OrganizationSegment -identity $Name ) {
+			Set-OrganizationSegment -identity $name -UserGroupFilter "$GroupFilter -$comp '$AttributeValue'" -ErrorAction Stop
+		}
+		else {
+			New-OrganizationSegment -Name $Name -UserGroupFilter "$GroupFilter -$comp '$AttributeValue'" -errorAction Stop
+		}
+		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Successfully created / modified Organization Segment '$Name'."
+		$statusBar.Text = "Ready. Created / edited Organization Segment '$Name'."
 	}
 	catch {
-		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Something failed to create the new Organization Segment '$Name'. $_"
-		$statusBar.Text = "Ready. Someting failed to create the new Organization Segment '$Name'. Please see the Powershell window to verify error message."
+		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Something failed to create / edit the Organization Segment '$Name'. $_"
+		$statusBar.Text = "Ready. Someting failed to create / edit the Organization Segment '$Name'. Please see the Powershell window to verify error message."
 	}
 }
