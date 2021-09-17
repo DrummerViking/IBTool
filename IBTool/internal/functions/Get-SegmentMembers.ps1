@@ -32,7 +32,7 @@
     $array = New-Object System.Collections.ArrayList
     $filter = (Get-OrganizationSegment -Identity $SegmentName).UserGroupFilter
     try { $array.AddRange( (Get-EXORecipient -Filter $filter -ResultSize Unlimited | Select-Object Name,PrimarySMTPAddress,*recipientType* ) ) }
-    catch { 
+    catch {
         $null = Write-PSFHostColor -String "$_"
     }
 
