@@ -26,10 +26,10 @@
 	# Modules that must be imported into the global environment prior to importing
 	# this module
 	RequiredModules = @(
-		@{ ModuleName='PSFramework'; ModuleVersion='1.5.170' }
+		@{ ModuleName='PSFramework'; ModuleVersion='1.6.205' }
 		@{ ModuleName='AzureAD'; ModuleVersion='2.0.2.135' }
 		@{ ModuleName='BurntToast'; ModuleVersion='0.8.5' }
-		@{ ModuleName='ExchangeOnlineManagement'; ModuleVersion='2.0.3'}
+		@{ ModuleName='ExchangeOnlineManagement'; ModuleVersion='2.0.5'}
 	)
 	
 	# Assemblies that must be loaded prior to importing this module
