@@ -3,7 +3,7 @@
 	RootModule = 'IBTool.psm1'
 	
 	# Version number of this module.
-	ModuleVersion = '2.0.5'
+	ModuleVersion = '2.0.6'
 	
 	# ID used to uniquely identify this module
 	GUID = '02adbc63-ac2f-46e0-bbc4-32a47b561894'
@@ -26,9 +26,10 @@
 	# Modules that must be imported into the global environment prior to importing
 	# this module
 	RequiredModules = @(
-		@{ ModuleName='PSFramework'; ModuleVersion='1.5.170' }
-		#@{ ModuleName='AzureAD'; ModuleVersion='2.0.2.135' }
-		@{ ModuleName='ExchangeOnlineManagement'; ModuleVersion='2.0.3'}
+		@{ ModuleName='PSFramework'; ModuleVersion='1.6.205' }
+		@{ ModuleName='AzureAD'; ModuleVersion='2.0.2.135' }
+		@{ ModuleName='BurntToast'; ModuleVersion='0.8.5' }
+		@{ ModuleName='ExchangeOnlineManagement'; ModuleVersion='2.0.5'}
 	)
 	
 	# Assemblies that must be loaded prior to importing this module

@@ -20,11 +20,13 @@
     param (
         # Parameters
     )
+    # check for updates
+    $runspaceData = Start-ModuleUpdate -ModuleRoot $script:ModuleRoot
 
     # Check current connection status, and connect if needed
     $ServicesToConnect = Assert-ServiceConnection
     # Connect to services if ArrayList is not empty
-    if ( $ServicesToConnect.Count ) { Connect-OnlineServices -Credential $Credentials -Services $ServicesToConnect }
+    if ( $ServicesToConnect.Count ) { Connect-OnlineServices -Services $ServicesToConnect }
 
     function GenerateForm {
         #region Import the Assemblies
@@ -98,7 +100,7 @@
         $labelNewSegmentHelp_Click={
             [Microsoft.VisualBasic.Interaction]::MsgBox("This option is to create or edit a simple Organization Segment. If you need to create a more complex segment with more attributes and combinations, please do them with powershell.
 
-If you are trying to create a new Organization Segment with the same name as an existing one, we will overwrite the current one with the new setings.
+If you are trying to create a new Organization Segment with the same name as an existing one, we will overwrite the current one with the new settings.
 
 More info at: https://docs.microsoft.com/en-us/microsoft-365/compliance/information-barriers-policies?view=o365-worldwide#part-1-segment-users
 
@@ -655,5 +657,10 @@ Press CTRL + C to copy this message to clipboard.",[Microsoft.VisualBasic.MsgBox
     } #End Function
 
     #Call the Function
-    GenerateForm
+    try {
+        GenerateForm
+    }
+    finally {
+        Stop-ModuleUpdate -RunspaceData $runspaceData
+    }
 }

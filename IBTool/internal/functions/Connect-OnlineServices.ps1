@@ -26,8 +26,8 @@
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
     [CmdletBinding(SupportsShouldProcess = $True, ConfirmImpact = 'Low')]
     param(
-        [PSCredential]
-        $Credential = (Get-Credential -Message "Please specify O365 Global Admin Credentials"),
+        #[PSCredential]
+        #$Credential = (Get-Credential -Message "Please specify O365 Global Admin Credentials"),
 
         [ValidateSet('EXO', 'SCC', 'MicrosoftTeams', 'MSOnline', 'AzureAD', 'AzureADPreview', 'Azure')]
         [String[]]
