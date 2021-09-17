@@ -27,7 +27,8 @@
 	# this module
 	RequiredModules = @(
 		@{ ModuleName='PSFramework'; ModuleVersion='1.5.170' }
-		#@{ ModuleName='AzureAD'; ModuleVersion='2.0.2.135' }
+		@{ ModuleName='AzureAD'; ModuleVersion='2.0.2.135' }
+		@{ ModuleName='BurntToast'; ModuleVersion='0.8.5' }
 		@{ ModuleName='ExchangeOnlineManagement'; ModuleVersion='2.0.3'}
 	)
 	

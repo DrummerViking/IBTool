@@ -20,7 +20,19 @@
     param (
         # Parameters
     )
+    # check for updates
+    $global:updateJob = Start-Job -ScriptBlock {
+        $script:ModuleRoot = $PSScriptRoot
+        $ModuleFileName = (Import-PowerShellDataFile -Path "$($script:ModuleRoot)\IBTool.psd1").RootModule
+        $ModuleName = $ModuleFileName.Substring(0,$ModuleFileName.IndexOf("."))
+        $script:ModuleVersion = (Import-PowerShellDataFile -Path "$($script:ModuleRoot)\IBTool.psd1").ModuleVersion
 
+        $GalleryModule = Find-Module -Name $ModuleName -Repository PSGallery
+        if ( 2.0.1 -lt $GalleryModule.version ) {
+            $bt = New-BTButton -Content "Get Update" -Arguments "https://github.com/agallego-css/IBTool#installation"
+            New-BurntToastNotification -Text 'IBTool Update found', 'There is a new version of this module available.' -Button $bt
+        }
+    }
     # Check current connection status, and connect if needed
     $ServicesToConnect = Assert-ServiceConnection
     # Connect to services if ArrayList is not empty
@@ -98,7 +110,7 @@
         $labelNewSegmentHelp_Click={
             [Microsoft.VisualBasic.Interaction]::MsgBox("This option is to create or edit a simple Organization Segment. If you need to create a more complex segment with more attributes and combinations, please do them with powershell.
 
-If you are trying to create a new Organization Segment with the same name as an existing one, we will overwrite the current one with the new setings.
+If you are trying to create a new Organization Segment with the same name as an existing one, we will overwrite the current one with the new settings.
 
 More info at: https://docs.microsoft.com/en-us/microsoft-365/compliance/information-barriers-policies?view=o365-worldwide#part-1-segment-users
 
