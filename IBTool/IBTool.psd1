@@ -3,7 +3,7 @@
 	RootModule = 'IBTool.psm1'
 	
 	# Version number of this module.
-	ModuleVersion = '2.0.6'
+	ModuleVersion = '2.0.7'
 	
 	# ID used to uniquely identify this module
 	GUID = '02adbc63-ac2f-46e0-bbc4-32a47b561894'
@@ -15,10 +15,10 @@
 	CompanyName = 'Microsoft'
 	
 	# Copyright statement for this module
-	Copyright = 'Copyright (c) 2020 Agustin Gallegos'
+	Copyright = 'Copyright (c) 2021 Agustin Gallegos'
 	
 	# Description of the functionality provided by this module
-	Description = 'This tool is intended to easily help on managing Information Barriers in Microsoft Teams'
+	Description = 'This tool is intended to easily help on managing Information Barriers in Microsoft Teams, Sharepoint and Onedrive'
 	
 	# Minimum version of the Windows PowerShell engine required by this module
 	PowerShellVersion = '5.1'
@@ -66,7 +66,7 @@
 		PSData = @{
 			
 			# Tags applied to this module. These help with module discovery in online galleries.
-			# Tags = @()
+			Tags = @('InformationBarriers', 'IB')
 			
 			# A URL to the license for this module.
 			LicenseUri = 'https://github.com/agallego-css/IBTool/blob/main/LICENSE'

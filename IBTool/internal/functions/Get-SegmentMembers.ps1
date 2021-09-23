@@ -33,7 +33,7 @@
     $filter = (Get-OrganizationSegment -Identity $SegmentName).UserGroupFilter
     try { $array.AddRange( (Get-EXORecipient -Filter $filter -ResultSize Unlimited | Select-Object Name,PrimarySMTPAddress,*recipientType* ) ) }
     catch {
-        $null = Write-PSFHostColor -String "$_"
+        $null
     }
 
     $statusBar.Text = "Ready. Members found: $($array.count)"

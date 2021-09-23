@@ -28,14 +28,15 @@
 		Param (
 			[String]$ModuleRoot
 		)
-		$ModuleFileName = (Import-PowerShellDataFile -Path "$((Get-ChildItem -Path $ModuleRoot -Filter *.psd1).Fullname)").RootModule
-		$ModuleName = $ModuleFileName.Substring(0,$ModuleFileName.IndexOf("."))
-		$script:ModuleVersion = (Import-PowerShellDataFile -Path "$((Get-ChildItem -Path $ModuleRoot -Filter *.psd1).Fullname)").ModuleVersion -as [version]
+		$moduleManifest = (Import-PowerShellDataFile -Path "$((Get-ChildItem -Path $ModuleRoot -Filter *.psd1).Fullname)")
+		$moduleFileName = $moduleManifest.RootModule
+		$moduleName = $ModuleFileName.Substring(0, $ModuleFileName.IndexOf("."))
+		$script:ModuleVersion = $moduleManifest.ModuleVersion -as [version]
 
 		$GalleryModule = Find-Module -Name $ModuleName -Repository PSGallery
 		if ( $script:ModuleVersion -lt $GalleryModule.version ) {
-			$bt = New-BTButton -Content "Get Update" -Arguments "https://github.com/agallego-css/$ModuleName#installation"
-			New-BurntToastNotification -Text 'IBTool Update found', 'There is a new version of this module available.' -Button $bt
+			$bt = New-BTButton -Content "Get Update" -Arguments "$($moduleManifest.PrivateData.PSData.ProjectUri)#installation"
+			New-BurntToastNotification -Text "$ModuleName Update found", 'There is a new version of this module available.' -Button $bt
 		}
 	}
 
@@ -51,8 +52,8 @@
 	$runspace.RunspacePool = $pool
 
 	[PSCustomObject]@{
-		Pipe = $runspace
+		Pipe   = $runspace
 		Status = $runspace.BeginInvoke()
-		Pool = $pool
+		Pool   = $pool
 	}
 }
