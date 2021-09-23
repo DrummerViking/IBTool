@@ -88,6 +88,16 @@
         $buttonRemoveSegment = New-Object System.Windows.Forms.Button
         $buttonRemoveIBpolicy = New-Object System.Windows.Forms.Button
 
+        $HorizontalLine7 = New-Object System.Windows.Forms.Label
+        $labelSearchLogTitle = New-Object System.Windows.Forms.Label
+        $labFromDate = New-Object System.Windows.Forms.Label
+        $FromDatePicker = New-Object System.Windows.Forms.DateTimePicker
+        $labToDate = New-Object System.Windows.Forms.Label
+        $ToDatePicker = New-Object System.Windows.Forms.DateTimePicker
+        $labelSearchAppLog = New-Object System.Windows.Forms.Label
+        $textSeaarchAppLog = New-Object System.Windows.Forms.TextBox
+        $buttonSearchAppLog = New-Object System.Windows.Forms.Button
+        
         $dataGrid = New-Object System.Windows.Forms.DataGridView
         $InitialFormWindowState = New-Object System.Windows.Forms.FormWindowState
         #endregion Creating required Forms Objects
@@ -570,7 +580,7 @@ Press CTRL + C to copy this message to clipboard.",[Microsoft.VisualBasic.MsgBox
         #
         $HorizontalLine6.Location = New-Object System.Drawing.Point(5,($buttonStartIBPolicyApplication.Location.Y + 40))
         $HorizontalLine6.Size = New-Object System.Drawing.Size(1090,2)
-        $HorizontalLine6.Name = "HorizontalLine5"
+        $HorizontalLine6.Name = "HorizontalLine6"
         $HorizontalLine6.Text = $null
         $HorizontalLine6.BorderStyle = [System.Windows.Forms.BorderStyle]::Fixed3D
         $MainForm.Controls.Add($HorizontalLine6)
@@ -630,12 +640,33 @@ Press CTRL + C to copy this message to clipboard.",[Microsoft.VisualBasic.MsgBox
         })
         $MainForm.Controls.Add($buttonRemoveIBpolicy)
         #
+        # Horizontal Line 7
+        #
+        $HorizontalLine7.Location = New-Object System.Drawing.Point(5,($buttonRemoveIBpolicy.Location.Y + 40))
+        $HorizontalLine7.Size = New-Object System.Drawing.Size(1090,2)
+        $HorizontalLine7.Name = "HorizontalLine7"
+        $HorizontalLine7.Text = $null
+        $HorizontalLine7.BorderStyle = [System.Windows.Forms.BorderStyle]::Fixed3D
+        $MainForm.Controls.Add($HorizontalLine7)
+        #
+        # Label Remove Segment/Policy Title
+        #
+        $labelRemoveIBPolicyTitle.Location = New-Object System.Drawing.Point(10,($HorizontalLine7.Location.Y + 10))
+        $labelRemoveIBPolicyTitle.Size = New-Object System.Drawing.Size(350,20)
+        $labelRemoveIBPolicyTitle.Name = "labelRemoveIBPolicyTitle"
+        $labelRemoveIBPolicyTitle.Text = "Remove Organization Segment or Information Barrier Policy"
+        $labelRemoveIBPolicyTitle.Font = New-Object System.Drawing.Font("Arial",8,[System.Drawing.FontStyle]::Bold)
+        $MainForm.Controls.Add($labelRemoveIBPolicyTitle)
+
+
+
+        #
         # Data Grid outputs
         #
         $dataGrid.Anchor = 15
         $dataGrid.DataBindings.DefaultDataSourceUpdateMode = 0
         $dataGrid.DataMember = ""
-        $dataGrid.Location = New-Object System.Drawing.Point(5,560)
+        $dataGrid.Location = New-Object System.Drawing.Point(5,610)
         $dataGrid.Size = New-Object System.Drawing.Size(1090,240)
         $dataGrid.Name = "dataGrid"
         $dataGrid.ReadOnly = $True
