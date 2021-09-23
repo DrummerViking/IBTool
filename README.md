@@ -1,7 +1,7 @@
 ﻿# IB Tool
 
 ## About
-This tool is intended to easily help on managing Information Barriers in Microsoft Teams.  
+This tool is intended to easily help on managing Information Barriers in Microsoft Teams, Sharepoint and Onedrive.  
 - You can list current Organization Segments.  
 - Get Segment's members.  
 - Get current Information Barriers policies.  
@@ -22,7 +22,8 @@ This tool is intended to easily help on managing Information Barriers in Microso
 ``` powershell
 Install-Module IBTool -Force
 ```
-Once the module is installed, you can run:
+
+Once the module is installed in your computer, you can always started by running:
 ``` powershell
 Start-IBTool
 ```
@@ -31,6 +32,7 @@ If you want to check for module updates you can run:
 ``` powershell
 Find-Module IBTool
 ```
+
 If there is any newer version than the one you already have, you can run:
 ``` powershell
 Update-Module IBTool -Force

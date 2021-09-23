@@ -1,13 +1,17 @@
 ﻿# Changelog  
 
+## 2.0.7 (2021-09-20)  
+- Updated: Readme with better tool description. Updated Copyright year.  
+- Updated: build's prerequisites scripts to add all necessary modules.  
+
 ## 2.0.6 (2021-09-17)  
 - New: Added an auto-check for update version and Toast Notify the user about it.  
 
 ## 2.0.5 (2021-09-16)  
 - New: Added section to remove Organization Segments and IB Policies.  
-- Updated: Updated section to create Organization Segments and added edition functionality.
-- Updated: All new IB Policies created will be with 'Inactive' state, until IB Policy Application is started.
-- Fixed: Added validation to prevent the mix with 'AzureAD' and 'AzureADPreview' powershell modules.
+- Updated: Updated section to create Organization Segments and added edition functionality.  
+- Updated: All new IB Policies created will be with 'Inactive' state, until IB Policy Application is started.  
+- Fixed: Added validation to prevent the mix with 'AzureAD' and 'AzureADPreview' powershell modules.  
 
 ## 2.0.1 (2021-01-27)  
 - New: Added section to create new Organization segments.  
