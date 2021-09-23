@@ -1,6 +1,7 @@
 ﻿# Changelog  
 
-## 2.0.7 (2021-09-20)  
+## 2.0.7 (2021-09-23)  
+- New: Added section to search audit logs based on IB Policy Application status events.  
 - Updated: Readme with better tool description. Updated Copyright year.  
 - Updated: build's prerequisites scripts to add all necessary modules.  
 
@@ -33,10 +34,10 @@
 - Fixed: Updated some grammar errors.  
 
 ## 0.0.18 (2020-10-29)  
-- Fixed: Updated Connect-OnlineServices function to invert the order of services to connect, to prevent cmdlet overlapping.  
 - New: Added function to check (and add if missing) an existing AzureAD Service Principal for "information Barrier Processor" Enterprise App.  
 - New: Added function to get Organization Segment members.  
 - New: Minor cosmetic change adding horizontal lines.  
+- Fixed: Updated Connect-OnlineServices function to invert the order of services to connect, to prevent cmdlet overlapping.  
 
 ## 0.0.13 (2020-10-28)  
  - New: Added 5 functions  
