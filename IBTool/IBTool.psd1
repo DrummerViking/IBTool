@@ -66,7 +66,7 @@
 		PSData = @{
 			
 			# Tags applied to this module. These help with module discovery in online galleries.
-			Tags = @('Information Barriers', 'IB')
+			Tags = @('InformationBarriers', 'IB')
 			
 			# A URL to the license for this module.
 			LicenseUri = 'https://github.com/agallego-css/IBTool/blob/main/LICENSE'
