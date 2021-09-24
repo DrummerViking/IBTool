@@ -1,5 +1,8 @@
 ﻿# Changelog  
 
+## 2.0.8 (2021-09-24)  
+- Updated: Readme with better tool description.  
+
 ## 2.0.7 (2021-09-23)  
 - New: Added section to search audit logs based on IB Policy Application status events.  
 - Updated: Readme with better tool description. Updated Copyright year.  
