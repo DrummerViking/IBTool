@@ -87,7 +87,6 @@
         $textRemoveIBPolicyName = New-Object System.Windows.Forms.TextBox
         $buttonRemoveSegment = New-Object System.Windows.Forms.Button
         $buttonRemoveIBpolicy = New-Object System.Windows.Forms.Button
-
         $HorizontalLine7 = New-Object System.Windows.Forms.Label
         $labelSearchLogTitle = New-Object System.Windows.Forms.Label
         $labFromDate = New-Object System.Windows.Forms.Label
@@ -129,7 +128,7 @@ Press CTRL + C to copy this message to clipboard.", [Microsoft.VisualBasic.MsgBo
         $MainForm.ClientSize = New-Object System.Drawing.Size(1100, 920)
         $MainForm.DataBindings.DefaultDataSourceUpdateMode = [System.Windows.Forms.DataSourceUpdateMode]::OnValidation
         $MainForm.Name = "Main Form"
-        $MainForm.Text = "Managing Information Barriers for Microsoft Teams"
+        $MainForm.Text = "Manage Information Barriers"
         $MainForm.StartPosition = "CenterScreen"
         $MainForm.KeyPreview = $True
         $MainForm.Add_KeyDown({
