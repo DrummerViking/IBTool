@@ -28,7 +28,7 @@
         [Switch]$ShowOutputline
     )
     if ( $ShowOutputline ) { Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Getting Organization Segment Members." }
-    $statusBar.Text = "Running..."
+    $statusBarLabel.Text = "Running..."
     $array = New-Object System.Collections.ArrayList
     $filter = (Get-OrganizationSegment -Identity $SegmentName).UserGroupFilter
     try { $array.AddRange( (Get-EXORecipient -Filter $filter -ResultSize Unlimited | Select-Object Name,PrimarySMTPAddress,*recipientType* ) ) }
@@ -36,6 +36,6 @@
         $null
     }
 
-    $statusBar.Text = "Ready. Members found: $($array.count)"
+    $statusBarLabel.Text = "Ready. Members found: $($array.count)"
     return $array
 }

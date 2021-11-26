@@ -20,10 +20,10 @@
         [Switch]$ShowOutputline
     )
     if ( $ShowOutputline ) { Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Getting current Organization Segments." }
-    $statusBar.Text = "Running..."
+    $statusBarLabel.Text = "Running..."
     $array = New-Object System.Collections.ArrayList
     $array.AddRange( (Get-OrganizationSegment | Select-Object Name,UserGroupFilter,CreatedBy,WhenCreated) )
 
-    $statusBar.Text = "Ready. Segments found: $($array.count)"
+    $statusBarLabel.Text = "Ready. Segments found: $($array.count)"
     return $array
 }

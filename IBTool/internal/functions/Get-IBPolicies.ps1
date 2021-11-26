@@ -20,9 +20,9 @@
         [Switch]$ShowOutputline
     )
     if ( $ShowOutputline ) { Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Getting current Information Barriers Policies." }
-    $statusBar.Text = "Running..."
+    $statusBarLabel.Text = "Running..."
     $array = New-Object System.Collections.ArrayList
     $array.AddRange( (Get-InformationBarrierPolicy | Select-Object Name, State, AssignedSegment, SegmentsAllowed, SegmentsBlocked, block*) )
-    $statusBar.Text = "Ready. IB Policies found: $($array.count)"
+    $statusBarLabel.Text = "Ready. IB Policies found: $($array.count)"
     return $array
 }

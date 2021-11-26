@@ -6,13 +6,16 @@
     .DESCRIPTION
     Checks current connection status for SCC, EXO and AzureAD
     
+    .PARAMETER MainForm
+    Form to create the required button objects.
+
     .EXAMPLE
     PS C:\> Assert-ServiceConnection
     Checks current connection status for SCC, EXO and AzureAD
     #>
     [CmdletBinding()]
     param (
-        # Parameters
+        $MainForm
     )
     $Sessions = Get-PSSession
     $ServicesToConnect = New-Object -TypeName "System.Collections.ArrayList"
@@ -23,18 +26,14 @@
     # Check if EXO connection
     if ( $Sessions.ComputerName -notcontains "outlook.office365.com" ) { $null = $ServicesToConnect.add("EXO") }
 
-    # Check if AzureADPreview is present
-    if (Get-module "AzureADPreview" -ListAvailable ) {
-        Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] 'AzureADPreview' module is not supported. Please remove it and install 'AzureAD' only."
-        break
+    # Connecting to AzAccount
+    $azContext = Get-AzContext
+    if ( -not($null -eq $azContext) ) {
+        Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Azure context is connected with: $($azcontext.Account). If it is not correct, click on the button 'Change AzContext Account'" -DefaultColor Yellow
     }
-
-    # Check if AzureAD connection
-    try{
-        $Null = Get-AzureADCurrentSessionInfo -ErrorAction Stop
+    else {
+        $null = $ServicesToConnect.add("AzAccount")
     }
-    catch {
-        $null = $ServicesToConnect.add("AzureAD")
-    }
+    
     return $ServicesToConnect
 }

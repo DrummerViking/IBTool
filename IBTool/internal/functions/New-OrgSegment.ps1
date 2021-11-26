@@ -46,7 +46,7 @@
 	if ($Comparison -eq "Equals") {$comp = "eq"}
 	else {$comp = "ne"}
 
-	$statusBar.Text = "Running..."
+	$statusBarLabel.Text = "Running..."
 	try {
 		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Creating / editing Organization Segment '$Name'."
 		if ( Get-OrganizationSegment -identity $Name ) {
@@ -56,10 +56,10 @@
 			New-OrganizationSegment -Name $Name -UserGroupFilter "$GroupFilter -$comp '$AttributeValue'" -errorAction Stop
 		}
 		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Successfully created / modified Organization Segment '$Name'."
-		$statusBar.Text = "Ready. Created / edited Organization Segment '$Name'."
+		$statusBarLabel.Text = "Ready. Created / edited Organization Segment '$Name'."
 	}
 	catch {
 		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Something failed to create / edit the Organization Segment '$Name'. $_"
-		$statusBar.Text = "Ready. Someting failed to create / edit the Organization Segment '$Name'. Please see the Powershell window to verify error message."
+		$statusBarLabel.Text = "Ready. Someting failed to create / edit the Organization Segment '$Name'. Please see the Powershell window to verify error message."
 	}
 }

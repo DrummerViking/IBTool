@@ -29,7 +29,7 @@
         #[PSCredential]
         #$Credential = (Get-Credential -Message "Please specify O365 Global Admin Credentials"),
 
-        [ValidateSet('EXO', 'SCC', 'MicrosoftTeams', 'MSOnline', 'AzureAD', 'AzureADPreview', 'Azure')]
+        [ValidateSet('EXO', 'SCC', 'MicrosoftTeams', 'MSOnline', 'AzureAD', 'AzureADPreview', 'Azure', 'AzAccount')]
         [String[]]
         $Services
     )
@@ -46,6 +46,13 @@
                 Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Connecting to Azure"
                 Install-Module Azure -Force -ErrorAction Stop
                 Import-Module Azure -ErrorAction Stop
+            } -EnableException $true -PSCmdlet $PSCmdlet
+        }
+
+        AzAccount {
+            Invoke-PSFProtectedCommand -Action "Connecting to Az.Accounts" -Target "Az.Accounts" -ScriptBlock {
+                Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Connecting to Az.Accounts"
+                $null = Connect-AzAccount -Credential $Credential -ErrorAction Stop
             } -EnableException $true -PSCmdlet $PSCmdlet
         }
 

@@ -28,16 +28,16 @@
 		[String]$AppId
 	)
 	Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Searching Unified Audit Logs."
-	$statusBar.Text = "Running..."
+	$statusBarLabel.Text = "Running..."
 	
 	$records = Search-UnifiedAuditLog -StartDate $StartDate -EndDate $EndDate -RecordType InformationBarrierPolicyApplication -ResultSize 5000 -ObjectIds $AppId
 	if ($null -ne $records) {
 		$array = New-Object System.Collections.ArrayList
 		$array.AddRange( ($records.auditdata | convertfrom-json | Select-Object CommandId, CommandStarted, CommandType, CreationTime, EndTime, GalChangeType, Id, ObjectId, Operation, OrganizationId, policyChangeType, recipientId, RecordType, StartTime, UserId, UserKey, UserType, Version, Workload) )
-		$statusBar.Text = "Ready. Records found: $($records.Count)"
+		$statusBarLabel.Text = "Ready. Records found: $($records.Count)"
 		return $array
 	}
 	else {
-		$statusBar.Text = "Ready. No records found"
+		$statusBarLabel.Text = "Ready. No records found"
 	}
 }

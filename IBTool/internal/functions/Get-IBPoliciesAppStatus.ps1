@@ -20,10 +20,10 @@
         [Switch]$ShowOutputline
     )
     if ( $ShowOutputline ) { Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Getting current Information Barriers Policies Application status." }
-    $statusBar.Text = "Running..."
+    $statusBarLabel.Text = "Running..."
     $array = New-Object System.Collections.ArrayList
     $results = Get-InformationBarrierPoliciesApplicationStatus -All:$true | Select-Object Identity, ApplicationStartTime, ApplicationEndTime, Status, PercentProgress
     $results | ForEach-Object { $null = $array.Add($_) }
-    $statusBar.Text = "Ready."
+    $statusBarLabel.Text = "Ready."
     return $array
 }

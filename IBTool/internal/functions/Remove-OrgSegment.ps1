@@ -24,17 +24,17 @@
 	Param (
 		[String]$Identity
 	)
-	$statusBar.Text = "Running..."
+	$statusBarLabel.Text = "Running..."
 	try {
 		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Removing Organization Segment '$Identity'."
 
 		Remove-OrganizationSegment -Identity $Identity -Confirm:$false -ErrorAction Stop
 
 		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Successfully removed Organization Segment '$Identity'."
-		$statusBar.Text = "Ready. Removed Organization Segment '$Identity'."
+		$statusBarLabel.Text = "Ready. Removed Organization Segment '$Identity'."
 	}
 	catch {
 		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Something failed to remove the Organization Segment '$Identity'. $_"
-		$statusBar.Text = "Ready. Someting failed to remove the Organization Segment '$Identity'. Please see the Powershell window to verify error message."
+		$statusBarLabel.Text = "Ready. Someting failed to remove the Organization Segment '$Identity'. Please see the Powershell window to verify error message."
 	}
 }
