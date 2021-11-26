@@ -10,6 +10,7 @@
     PS C:\> Assert-ServiceConnection
     Checks current connection status for SCC, EXO and AzureAD
     #>
+    [OutputType([System.Collections.ArrayList])]
     [CmdletBinding()]
     param (
         # Parameters
