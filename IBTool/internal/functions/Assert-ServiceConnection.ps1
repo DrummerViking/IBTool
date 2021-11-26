@@ -5,9 +5,6 @@
     
     .DESCRIPTION
     Checks current connection status for SCC, EXO and AzureAD
-    
-    .PARAMETER MainForm
-    Form to create the required button objects.
 
     .EXAMPLE
     PS C:\> Assert-ServiceConnection
@@ -15,7 +12,7 @@
     #>
     [CmdletBinding()]
     param (
-        $MainForm
+        # Parameters
     )
     $Sessions = Get-PSSession
     $ServicesToConnect = New-Object -TypeName "System.Collections.ArrayList"
