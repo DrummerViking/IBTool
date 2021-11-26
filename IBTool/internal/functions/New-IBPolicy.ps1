@@ -45,7 +45,7 @@
 		[Parameter(Mandatory = $true, HelpMessage = "Defines the segment(s) to be Allowed or Blocked in the policy.")]
 		[String]$AorBSegments
 	)
-	$statusBar.Text = "Running..."
+	$statusBarLabel.Text = "Running..."
 	try {
 		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Creating new Information Barrier Policy '$PolicyName'."
 		$segmentsList = New-Object System.Collections.ArrayList
@@ -60,10 +60,10 @@
 			New-InformationBarrierPolicy -Name $PolicyName -AssignedSegment $AssignedSegment -SegmentsBlocked $segmentsList -State Inactive -Confirm:$False -ErrorAction Stop
 		}
 		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Successfully created Information Barrier Policy '$PolicyName'."
-		$statusBar.Text = "Ready. Created Information Barrier Policy '$PolicyName'."
+		$statusBarLabel.Text = "Ready. Created Information Barrier Policy '$PolicyName'."
 	}
 	catch {
 		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Something failed to create the new Information Barrier Policy '$PolicyName'. $_"
-		$statusBar.Text = "Ready. Someting failed to create the new Information Barrier Policy '$PolicyName'. Please see the Powershell window to verify error message."
+		$statusBarLabel.Text = "Ready. Someting failed to create the new Information Barrier Policy '$PolicyName'. Please see the Powershell window to verify error message."
 	}
 }

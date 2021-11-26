@@ -22,8 +22,10 @@
         # Parameters
     )
     Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Creating new Information Barriers Service Principal in AzureAD."
-    $newSP = New-AzureADServicePrincipal -AppId "bcf62038-e005-436d-b970-2a472f8c1982"
-    Start-Process "https://login.microsoftonline.com/common/adminconsent?client_id=$($newSp.appId)"
+    #$newSP = New-AzureADServicePrincipal -AppId "bcf62038-e005-436d-b970-2a472f8c1982" -ErrorAction Stop
+    $newSP = New-AzADServicePrincipal -ApplicationId "bcf62038-e005-436d-b970-2a472f8c1982" -ErrorAction Stop
+    #Start-Process "https://login.microsoftonline.com/common/adminconsent?client_id=$($newSp.appId)"
+    Start-Process "https://login.microsoftonline.com/common/adminconsent?client_id=$($newSp.applicationId)"
     
     # Refresh IB Service Principal Status
     Get-IBServicePrincipal

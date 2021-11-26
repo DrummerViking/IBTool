@@ -38,7 +38,8 @@
 
         #region Creating required Forms Objects
         $MainForm = New-Object System.Windows.Forms.Form
-        $statusBar = New-Object System.Windows.Forms.StatusBar
+        $statusBar = New-Object System.Windows.Forms.StatusStrip
+        $statusBarLabel = New-Object System.Windows.Forms.ToolStripStatusLabel
         $labelTenantInfo = New-Object System.Windows.Forms.Label
         $labelAuditLogStatus = New-Object System.Windows.Forms.Label
         $labelAuditLogStatusValue = New-Object System.Windows.Forms.Label
@@ -122,8 +123,9 @@ Press CTRL + C to copy this message to clipboard.", [Microsoft.VisualBasic.MsgBo
         #
         # Main Form
         #
+        $null = $statusBar.Items.Add($statusBarLabel)
         $statusBar.Name = "statusBar"
-        $statusBar.Text = "Ready..."
+        $statusBarLabel.Text = "Ready..."
         $MainForm.Controls.Add($statusBar)
         $MainForm.ClientSize = New-Object System.Drawing.Size(1100, 920)
         $MainForm.DataBindings.DefaultDataSourceUpdateMode = [System.Windows.Forms.DataSourceUpdateMode]::OnValidation
@@ -143,6 +145,21 @@ Press CTRL + C to copy this message to clipboard.", [Microsoft.VisualBasic.MsgBo
         $labelTenantInfo.Text = "Tenant Info"
         $labelTenantInfo.Font = New-Object System.Drawing.Font("Arial", 8, [System.Drawing.FontStyle]::Bold)
         $MainForm.Controls.Add($labelTenantInfo)
+        #
+        # Button Change AzContext
+        #
+        if ( $ServicesToConnect -notcontains "AzAccount") {
+            $buttonChangeAzContext = New-Object System.Windows.Forms.Button
+            $buttonChangeAzContext.DataBindings.DefaultDataSourceUpdateMode = 0
+            $buttonChangeAzContext.ForeColor = [System.Drawing.Color]::FromArgb(255,0,0,0)
+            $buttonChangeAzContext.Location = New-Object System.Drawing.Point(150,8)
+            $buttonChangeAzContext.Size = New-Object System.Drawing.Size(250,25)
+            $buttonChangeAzContext.Name = "ChangeAzContext"
+            $buttonChangeAzContext.Text = "Change AzContext Account"
+            $buttonChangeAzContext.UseVisualStyleBackColor = $True
+            $buttonChangeAzContext.add_Click({Connect-AzAccount -ErrorAction Stop})
+            $MainForm.Controls.Add($buttonChangeAzContext)
+        }
         #
         # Label Audit Logging Status
         #

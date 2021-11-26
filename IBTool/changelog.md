@@ -1,5 +1,9 @@
 ﻿# Changelog  
 
+## 2.0.10 (2021-11-26)  
+- Updated: Tool no longer requires AzureAD module, it switched to Az.Resources  
+- Updated: Tool should be compatible with PS7 and PS5.1  
+
 ## 2.0.8 (2021-09-24)  
 - Updated: Readme with better tool description.  
 

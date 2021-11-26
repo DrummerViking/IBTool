@@ -34,7 +34,7 @@
         [Switch]$ShowOutputline
     )
     if ( $ShowOutputline ) { Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Getting current information Barrier Recipient status between $user1 and $user2." }
-    $statusBar.Text = "Running..."
+    $statusBarLabel.Text = "Running..."
     #$array = New-Object System.Collections.ArrayList
     $array = New-Object System.Collections.ArrayList
     $SegmentsFound1 = New-Object System.Collections.ArrayList
@@ -48,6 +48,6 @@
     $matchedPolicies = Get-IBPolicies | Where-Object { $_.AssignedSegment -eq $SegmentsFound1.name -and ($_.SegmentsAllowed -match $SegmentsFound2.name -or $_.SegmentsBlocked -match $SegmentsFound2.name)}
     $matchedPolicies | ForEach-Object { $null = $array.Add( $_ ) }
 
-    $statusBar.Text = "Ready. Matched: $($array.count)"
+    $statusBarLabel.Text = "Ready. Matched: $($array.count)"
     return $array
 }

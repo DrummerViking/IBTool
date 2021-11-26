@@ -22,14 +22,14 @@
 	Param (
 		# Parameters
 	)
-	$statusBar.Text = "Running..."
+	$statusBarLabel.Text = "Running..."
 	try {
 		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Setting all IB Policies status to 'Active'."
 		Get-InformationBarrierPolicy | ForEach-Object { Set-InformationBarrierPolicy -Identity $_.name -State active -Confirm:$false -force -WarningAction SilentlyContinue }
 		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Starting to apply Information Barrier Policies application."
 		Start-InformationBarrierPoliciesApplication -ErrorAction Stop
 		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Started successfully. Allow 30 minutes for the system to start applying the policies. The system applies policies user by user. The system processes about 5,000 user accounts per hour."
-		$statusBar.Text = "Ready. Started successfully."
+		$statusBarLabel.Text = "Ready. Started successfully."
 	}
 	catch {
 		Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Something failed to start applying Information Barrier Policies application. $_"
