@@ -3,7 +3,7 @@
 	RootModule = 'IBTool.psm1'
 	
 	# Version number of this module.
-	ModuleVersion = '2.0.10'
+	ModuleVersion = '2.0.12'
 	
 	# ID used to uniquely identify this module
 	GUID = '02adbc63-ac2f-46e0-bbc4-32a47b561894'
@@ -15,7 +15,7 @@
 	CompanyName = 'Microsoft'
 	
 	# Copyright statement for this module
-	Copyright = 'Copyright (c) 2021 Agustin Gallegos'
+	Copyright = 'Copyright (c) 2022 Agustin Gallegos'
 	
 	# Description of the functionality provided by this module
 	Description = 'This tool is intended to easily help on managing Information Barriers in Microsoft Teams, Sharepoint and Onedrive'
@@ -26,7 +26,7 @@
 	# Modules that must be imported into the global environment prior to importing
 	# this module
 	RequiredModules = @(
-		@{ ModuleName='PSFramework'; ModuleVersion='1.6.205' }
+		@{ ModuleName='PSFramework'; ModuleVersion='1.6.214' }
 		@{ ModuleName='Az.Resources'; ModuleVersion='4.4.1' }
 		@{ ModuleName='BurntToast'; ModuleVersion='0.8.5' }
 		@{ ModuleName='ExchangeOnlineManagement'; ModuleVersion='2.0.5'}
