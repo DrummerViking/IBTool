@@ -176,8 +176,8 @@
                     else { Connect-ExchangeOnline -Credential $Credential -ShowBanner:$False -ErrorAction Stop }
                 }
                 catch {
-                    if ( ($_.Exception.InnerException.InnerException.InnerException.InnerException.ErrorCode | ConvertFrom-Json).error -eq 'interaction_required' ) {
-                        Write-PSFHostColor -String  "[$((Get-Date).ToString("HH:mm:ss"))] Your account seems to be requiring MFA to connect to Exchange Online. Requesting to authenticate"
+                    if ( $_.Exception.InnerException.Message.StartsWith("AADSTS50076") ) {
+                        Write-PSFHostColor -String "[$((Get-Date).ToString("HH:mm:ss"))] Your account seems to be requiring MFA to connect to Exchange Online. Requesting to authenticate"
                         Connect-ExchangeOnline -UserPrincipalName $Credential.Username.toString() -ShowBanner:$False -ErrorAction Stop
                     }
                     else {

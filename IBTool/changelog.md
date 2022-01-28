@@ -1,5 +1,9 @@
 ﻿# Changelog  
 
+## 2.0.12 (2022-01-28)  
+- Fixed: Connection to EXO with MFA was incorrectly catching the error to trigger interactive logon.  
+- Updated: Updated readme with required permissions.  
+
 ## 2.0.10 (2021-11-26)  
 - Updated: Tool no longer requires AzureAD module, it switched to Az.Resources  
 - Updated: Tool should be compatible with PS7 and PS5.1  

@@ -18,6 +18,15 @@ This tool is intended to easily help on managing Information Barriers in Microso
  > This Module requires Powershell 5.1 and above.  
  > This Module will install required modules if not installed.  
 
+<details>
+	<summary>Required Permissions</summary>
+	<sub>This tool will attempt to connect to Exchange Online, Security and Compliance and Azure.<br>
+Exchange Online (you need either global admin or “Exchange Administrator” role).<br>
+Security and Compliance (you need either global admin or “Compliance Administrator” role).<br>
+Az-Account (Global admin for sure, but don't know the roles to create Service Principal individually).<br><br>
+	</sub>
+</details>
+
  ## Installation
 
  Open a Windows Powershell with "Run as Administrator" and run:
