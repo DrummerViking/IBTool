@@ -1,4 +1,7 @@
 ﻿# IB Tool
+![](https://img.shields.io/github/last-commit/DrummerViking/IBTool/main?logo=Github&label=Last%20updated)
+![](https://img.shields.io/powershellgallery/dt/IBTool?logo=Powershell&label=Gallery)
+
 
 ## About
 This tool is intended to easily help on managing Information Barriers in Microsoft Teams, Sharepoint and Onedrive.  
